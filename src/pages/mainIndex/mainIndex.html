@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      首页
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button color="black" (click)="onClickNotices()"><img src="assets/img/a.png"><img src="assets/img/a.png" *ngIf=""></button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-slides [options]="mySlideOptions">
+
+    <ion-slide style="background-color: green">
+      <h2>Slide 1</h2>
+    </ion-slide>
+
+    <ion-slide style="background-color: blue">
+      <h2>Slide 2</h2>
+    </ion-slide>
+
+    <ion-slide style="background-color: red">
+      <h2>Slide 3</h2>
+    </ion-slide>
+
+  </ion-slides>
+
+  <ion-grid>
+    <ion-row center>
+      <ion-col class="item-box" tappable (click)="onClickItem(1)"><img src="assets/img/x_cczgl.png"><br>通知公告</ion-col>
+      <ion-col class="item-box" tappable (click)="onClickItem(2)"><img src="assets/img/x_dlgy.png"><br>费用交纳</ion-col>
+      <ion-col class="item-box" tappable (click)="onClickItem(3)"><img src="assets/img/x_dlgy.png"><br>故障报修</ion-col>
+      <ion-col class="item-box" tappable (click)="onClickItem(4)"><img src="assets/img/x_gcxmjg.png"><br>管家服务</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list no-lines>
+    <ion-item (click)="onClickDetail()">
+      <div class="item-content">
+        <div>
+          <ion-thumbnail>
+            <img src="assets/img/x_cczgl.png">
+          </ion-thumbnail>
+          <div>
+            <p><span>4室2厅4卫</span><span>320㎡</span></p>
+            <p><span>10000元/月</span></p>
+            <p><span>创客空间B栋C户型</span><span>简装</span></p>
+          </div>
+        </div>
+      </div>
+    </ion-item>
+    <ion-item>
+      <div class="item-content">
+        <div>
+          <ion-thumbnail>
+            <img src="assets/img/x_cczgl.png">
+          </ion-thumbnail>
+          <div>
+            <p><span>4室2厅4卫</span><span>320㎡</span></p>
+            <p><span>10000元/月</span></p>
+            <p><span>创客空间B栋C户型</span><span>简装</span></p>
+          </div>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

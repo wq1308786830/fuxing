@@ -1,0 +1,69 @@
+hirer-main {
+  ion-header {
+    ion-title {
+      text-align: center;
+    }
+    ion-buttons {
+      img {
+        height: 2.4rem;
+        width: 2.4rem;
+      }
+    }
+  }
+
+  ion-slides {
+    height: 33%;
+  }
+  .slide-container {
+    width: 100%;
+    min-height: 100px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  ion-grid {
+    border-bottom: 0.55px #eee solid;
+  }
+
+  .item-box {
+    padding: 10px;
+    text-align: center;
+    img {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 100%;
+      margin-bottom: 1rem;
+    }
+  }
+
+  ion-item {
+    .input-wrapper {
+      border-bottom: 0.55px #eee solid;
+    }
+  }
+
+  .item-content {
+    & > div {
+      display: flex;
+      ion-thumbnail {
+        min-width: 7.6rem;
+        min-height: 7.6rem;
+      }
+      div {
+        width: 100%;
+        p {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 1rem;
+          font-size: 1.5rem;
+          &:last-of-type {
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+  }
+}

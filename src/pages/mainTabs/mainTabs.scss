@@ -1,0 +1,24 @@
+main-tabs {
+  .tabs-ios {
+    .tabbar {
+      border-top: 0.55px #e4e4e4 solid;
+    }
+    .tab-button-icon {
+      min-width: 3.2rem;
+      height: 5rem;
+      font-size: 3rem;
+    }
+  }
+
+  .ion-ios-tab-index {
+    content: url("../assets/img/dbl_l_aq.png");
+    width: 3.2rem;
+    height: 5rem;
+  }
+
+  .ion-ios-tab-index-outline {
+    content: url("../assets/img/dbl_a_aq.png");
+    width: 3.2rem;
+    height: 5rem;
+  }
+}
