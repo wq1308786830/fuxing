@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      保洁服务
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div padding>
+    <ion-segment [(ngModel)]="cleaning">
+      <ion-segment-button value="cleaningForm">
+        申请服务
+      </ion-segment-button>
+      <ion-segment-button value="cleaningList">
+        服务记录
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="cleaning">
+    <ion-list class="form-common"  *ngSwitchCase="'cleaningForm'" no-lines>
+      <ion-item>
+        <ion-label floating>请输入服务内容</ion-label>
+        <ion-textarea [(ngModel)]="formDetail.cleanContent"></ion-textarea>
+      </ion-item>
+      <ion-item class="with-arrow" (click)="changePhoneNo()">
+        <ion-label>
+          <ion-icon name="call"></ion-icon>
+          联系电话
+        </ion-label>
+        <ion-input [(ngModel)]="formDetail.masterPhoneNo" readonly></ion-input>
+      </ion-item>
+      <ion-item class="with-arrow" (click)="changeName()">
+        <ion-label>
+          <ion-icon name="person"></ion-icon>
+          联系人
+        </ion-label>
+        <ion-input [(ngModel)]="formDetail.masterName" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <ion-icon name="home"></ion-icon>
+          维修地址
+        </ion-label>
+        <ion-input [(ngModel)]="formDetail.masterAddress" readonly></ion-input>
+      </ion-item>
+      <ion-item class="with-arrow">
+        <ion-label>
+          <ion-icon name="time"></ion-icon>
+          报修时间
+        </ion-label>
+        <ion-datetime displayFormat="MM月DD日YYYY年" [(ngModel)]="formDetail.changeDate" doneText="完成"
+                      cancelText="取消"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>业主在家</ion-label>
+        <ion-checkbox [(ngModel)]="formDetail.masterAtHome"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>我想说</ion-label>
+        <ion-textarea [(ngModel)]="formDetail.comment"></ion-textarea>
+      </ion-item>
+
+      <div class="single-row">
+        <button ion-button (click)="onClickSubmit()">提交</button>
+      </div>
+    </ion-list>
+
+
+    <ion-list class="faultRepairList" *ngSwitchCase="'cleaningList'" no-lines>
+      <ion-item>
+        <ion-row class="header">
+          <ion-col>时间</ion-col>
+          <ion-col>服务内容</ion-col>
+          <ion-col>是否处理</ion-col>
+          <ion-col>评价</ion-col>
+        </ion-row>
+      </ion-item>
+      <ion-item>
+        <ion-row>
+          <ion-col>2016-10-10</ion-col>
+          <ion-col>房屋保洁，打扫卫生</ion-col>
+          <ion-col>是</ion-col>
+          <ion-col>
+            <ion-icon name="checkmark"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>服务价格：50元</ion-col><ion-col><button ion-button (click)="goPayMoney()">待付费</button></ion-col>
+        </ion-row>
+      </ion-item>
+      <ion-item>
+        <ion-row>
+          <ion-col>2016-10-10</ion-col>
+          <ion-col>房屋保洁，打扫卫生</ion-col>
+          <ion-col>是</ion-col>
+          <ion-col>
+            <ion-icon name="create-outline" (click)="goRating()"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>服务价格：50元</ion-col><ion-col><button ion-button color="light">已付费</button></ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

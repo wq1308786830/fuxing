@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      故障报修
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="md-car"></ion-icon>
+      </ion-label>
+      <ion-input [(ngModel)]="formDetail.mailCompany" placeholder="请输入快递公司"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="mail-outline"></ion-icon>
+      </ion-label>
+      <ion-input [(ngModel)]="formDetail.mailNo" placeholder="请输入快递单号"></ion-input>
+    </ion-item>
+    <ion-item class="with-arrow" (click)="changePhoneNo()">
+      <ion-label>
+        <ion-icon name="call"></ion-icon>
+        联系电话
+      </ion-label>
+      <ion-input [(ngModel)]="formDetail.masterPhoneNo" readonly></ion-input>
+    </ion-item>
+    <ion-item class="with-arrow" (click)="changeName()">
+      <ion-label>
+        <ion-icon name="person"></ion-icon>
+        联系人
+      </ion-label>
+      <ion-input [(ngModel)]="formDetail.masterName" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="home"></ion-icon>
+        维修地址
+      </ion-label>
+      <ion-input [(ngModel)]="formDetail.masterAddress" readonly></ion-input>
+    </ion-item>
+
+    <div class="single-row">
+      <button ion-button (click)="onClickSubmit()">提交</button>
+    </div>
+  </ion-list>
+
+</ion-content>

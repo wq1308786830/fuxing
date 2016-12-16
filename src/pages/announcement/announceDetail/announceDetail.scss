@@ -1,0 +1,21 @@
+announceDetail {
+
+  .content-ios {
+
+    .scroll-content {
+      padding: 2rem;
+      h4 {
+        text-align: center;
+      }
+      p {
+        &:first-of-type {
+          color: #8e9093;
+        }
+        &:last-of-type {
+          text-indent: 2rem;
+          line-height: 2rem;
+        }
+      }
+    }
+  }
+}

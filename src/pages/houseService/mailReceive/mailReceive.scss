@@ -1,0 +1,25 @@
+mailReceive {
+  ion-grid {
+    ion-row {
+      text-align: center;
+      font-size: 1.3rem;
+      &:first-of-type {
+        font-size: 1.5rem;
+        border-top: 0.55px #e4e4e4 solid;
+        border-bottom: 0.55px #e4e4e4 solid;
+        ion-col {
+          border-right: 0.55px #e4e4e4 solid;
+          &:last-of-type {
+            border-right: 0;
+            font-size: 1.3rem;
+          }
+        }
+      }
+      ion-col {
+        &:last-of-type {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}

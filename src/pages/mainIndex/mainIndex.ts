@@ -5,6 +5,10 @@ import {Component} from "@angular/core";
 import {NavController, Slides} from "ionic-angular";
 import {HirerHttpService} from "../../services/hirer-http-service";
 import {LoginPage} from "../login/login";
+import {AnnounceList} from "../announcement/announceList/announceList";
+import {PaymentHome} from "../payment/paymentHome/paymentHome";
+import {FaultRepair} from "../faultRepair/faultRepair";
+import {HouseHome} from "../houseService/houseHome/houseHome";
 
 @Component({
   selector: 'hirer-main',
@@ -14,18 +18,18 @@ import {LoginPage} from "../login/login";
 //todo: 数据
 export class MainIndex {
 
+  mySlideOptions = {
+    pager: true,
+    autoplay: 2000,
+    initialSlide: 1,
+    loop: true,
+
+  };
+
   constructor(public navCtrl: NavController,
               public httpService: HirerHttpService) {
 
   }
-
-  mySlideOptions = {
-    pager: true,
-    autoplay: 2000,
-    initialSlide: 3,
-    loop: true,
-    speed: 300,
-  };
 
   onClickNotices() {
 
@@ -33,19 +37,22 @@ export class MainIndex {
 
   onClickItem(pageIndex: number) {
 
-    if (this.httpService.isLogin) {
+    if (!this.httpService.isLogin) {
 
       switch (pageIndex) {
         case 1:
-          // this.navCtrl.setRoot();
+          this.navCtrl.push(AnnounceList);
           break;
 
         case 2:
-          // this.navCtrl.push();
+          this.navCtrl.push(PaymentHome);
           break;
 
         case 3:
-          // this.navCtrl.push();
+          this.navCtrl.push(FaultRepair);
+          break;
+        case 4:
+          this.navCtrl.push(HouseHome);
           break;
 
         default:

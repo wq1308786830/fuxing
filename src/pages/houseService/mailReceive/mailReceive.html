@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-navbar>
+      <ion-title>
+        邮件代收
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button color="black" (click)="addMailReceive()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div padding>
+    <ion-segment [(ngModel)]="receiveTag">
+      <ion-segment-button value="notReceived">
+        未签收
+      </ion-segment-button>
+      <ion-segment-button value="received">
+        已签收
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="receiveTag">
+
+    <ion-list *ngSwitchCase="'notReceived'" no-lines>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col>快递单号</ion-col>
+            <ion-col>快递公司</ion-col>
+            <ion-col>是否送达</ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>4442221</ion-col>
+            <ion-col>顺丰</ion-col>
+            <ion-col>已到</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>4442221</ion-col>
+            <ion-col>顺丰</ion-col>
+            <ion-col>已到</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>4442221</ion-col>
+            <ion-col>顺丰</ion-col>
+            <ion-col>已到</ion-col>
+          </ion-row>
+
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'received'" no-lines>
+      <ion-item>
+        <ion-grid>
+          <ion-row>
+            <ion-col>快递单号</ion-col>
+            <ion-col>快递公司</ion-col>
+            <ion-col>签收时间</ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>4442221</ion-col>
+            <ion-col>顺丰</ion-col>
+            <ion-col>2016-10-10 12:30</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>4442221</ion-col>
+            <ion-col>顺丰</ion-col>
+            <ion-col>2016-10-10 12:30</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>4442221</ion-col>
+            <ion-col>顺丰</ion-col>
+            <ion-col>2016-10-10 12:30</ion-col>
+          </ion-row>
+
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+</ion-content>

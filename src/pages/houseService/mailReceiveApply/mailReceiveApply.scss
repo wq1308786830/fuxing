@@ -1,0 +1,74 @@
+mailReceiveApply {
+
+  .list-ios {
+    .with-arrow {
+      .item-inner {
+        .input-wrapper:after {
+          box-sizing: border-box;
+          display: inline-block;
+          font-family: Ionicons;
+          speak: none;
+          font-style: normal;
+          font-weight: 400;
+          font-variant: normal;
+          text-transform: none;
+          text-rendering: auto;
+          line-height: 1;
+          -webkit-font-smoothing: antialiased;
+          content: "\f3d1";
+          margin-right: 0.8rem;
+          font-size: 2.6rem;
+        }
+      }
+    }
+    .item-ios {
+      border-bottom: 0.55px #e4e4e4 solid;
+      &:not(:first-of-type, :nth-of-type(2)) {
+        .label-ios {
+          flex: 0.6;
+        }
+      }
+
+      &:last-of-type {
+        input {
+          font-size: 1.4rem;
+          margin-left: 0;
+        }
+      }
+
+      .item-inner {
+        border: none;
+      }
+
+      .label-ios {
+        .input-ios {
+          .text-input {
+            padding-right: 0;
+          }
+        }
+        .icon-ios {
+          margin-right: 1rem;
+        }
+      }
+      .datetime-ios {
+        flex: 1;
+        .datetime-text {
+          margin-left: 1.4rem;
+        }
+        .label-ios {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+  .single-row {
+    padding: 2rem;
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+  .label-ios + ion-input .text-input {
+    padding-right: 0;
+  }
+}

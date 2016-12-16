@@ -7,6 +7,21 @@ import {HirerHttpService} from "../services/hirer-http-service";
 import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
 import {Utils} from "../services/utils";
+import {AnnounceList} from "../pages/announcement/announceList/announceList";
+import {AnnounceDetail} from "../pages/announcement/announceDetail/announceDetail";
+import {PaymentHome} from "../pages/payment/paymentHome/paymentHome";
+import {PropertyCosts} from "../pages/payment/propertyCosts/propertyCosts";
+import {WaterCosts} from "../pages/payment/waterCosts/waterCosts";
+import {ElectricCosts} from "../pages/payment/electricCosts/electricCosts";
+import {NetCosts} from "../pages/payment/netCosts/netCosts";
+import {RoomCosts} from "../pages/payment/roomCosts/roomCosts";
+import {FaultRepair} from "../pages/faultRepair/faultRepair";
+import {HouseHome} from "../pages/houseService/houseHome/houseHome";
+import {MailReceive} from "../pages/houseService/mailReceive/mailReceive";
+import {ItemModal} from "../pages/modals/itemModal";
+import {RatingModal} from "../pages/modals/ratingModal";
+import {MailReceiveApply} from "../pages/houseService/mailReceiveApply/mailReceiveApply";
+import {Cleaning} from "../pages/houseService/cleaning/cleaning";
 
 @NgModule({
   declarations: [
@@ -14,7 +29,30 @@ import {Utils} from "../services/utils";
     MainTabs,
     MainIndex,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    AnnounceList,
+    AnnounceDetail,
+
+    //modals
+    ItemModal,
+    RatingModal,
+
+    //payment
+    PaymentHome,
+    PropertyCosts,
+    WaterCosts,
+    ElectricCosts,
+    NetCosts,
+    RoomCosts,
+
+    //fault repair
+    FaultRepair,
+
+    //houseService
+    HouseHome,
+    MailReceive,
+    MailReceiveApply,
+    Cleaning
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -29,7 +67,30 @@ import {Utils} from "../services/utils";
     MainTabs,
     MainIndex,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    AnnounceList,
+    AnnounceDetail,
+
+    //modals
+    ItemModal,
+    RatingModal,
+
+    //payment
+    PaymentHome,
+    PropertyCosts,
+    WaterCosts,
+    ElectricCosts,
+    NetCosts,
+    RoomCosts,
+
+    //fault repair
+    FaultRepair,
+
+    //houseService
+    HouseHome,
+    MailReceive,
+    MailReceiveApply,
+    Cleaning
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

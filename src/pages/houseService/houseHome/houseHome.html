@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar color="black">
+    <ion-title>
+      管家服务
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-slides [options]="mySlideOptions">
+
+    <ion-slide style="background-color: green">
+      <h2>Slide 1</h2>
+    </ion-slide>
+
+    <ion-slide style="background-color: blue">
+      <h2>Slide 2</h2>
+    </ion-slide>
+
+    <ion-slide style="background-color: red">
+      <h2>Slide 3</h2>
+    </ion-slide>
+
+  </ion-slides>
+
+  <ion-grid>
+    <ion-row center>
+      <ion-col class="item-box" tappable (click)="onClickItem(1)"><div><img src="assets/img/x_cczgl.png"><p>邮件代收</p></div></ion-col>
+      <ion-col class="item-box" tappable (click)="onClickItem(2)"><div><img src="assets/img/x_dlgy.png"><p>保洁服务</p></div></ion-col>
+      <ion-col class="item-box"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

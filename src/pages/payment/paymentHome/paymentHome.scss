@@ -1,0 +1,50 @@
+paymentHome {
+  ion-header {
+    ion-title {
+      text-align: center;
+    }
+    ion-buttons {
+      img {
+        height: 2.4rem;
+        width: 2.4rem;
+      }
+    }
+  }
+
+  ion-slides {
+    height: 33%;
+  }
+  .slide-container {
+    width: 100%;
+    min-height: 100px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  ion-grid {
+    padding: 0;
+    ion-row {
+      border-bottom: 0.55px #e4e4e4 solid;
+      ion-col {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 0.55px #e4e4e4 solid;
+        &:last-of-type {
+          border-right: none;
+        }
+        div {
+          margin-top: 2rem;
+          text-align: center;
+          font-size: 1.6rem;
+          img {
+            height: 4rem;
+          }
+        }
+      }
+    }
+  }
+}

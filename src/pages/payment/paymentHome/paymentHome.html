@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="black">
+    <ion-title>
+      费用缴纳
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-slides [options]="mySlideOptions">
+
+    <ion-slide style="background-color: green">
+      <h2>Slide 1</h2>
+    </ion-slide>
+
+    <ion-slide style="background-color: blue">
+      <h2>Slide 2</h2>
+    </ion-slide>
+
+    <ion-slide style="background-color: red">
+      <h2>Slide 3</h2>
+    </ion-slide>
+
+  </ion-slides>
+
+  <ion-grid>
+    <ion-row center>
+      <ion-col class="item-box" tappable (click)="onClickItem(1)"><div><img src="assets/img/x_cczgl.png"><p>物业费</p></div></ion-col>
+      <ion-col class="item-box" tappable (click)="onClickItem(2)"><div><img src="assets/img/x_dlgy.png"><p>水费</p></div></ion-col>
+      <ion-col class="item-box" tappable (click)="onClickItem(3)"><div><img src="assets/img/x_dlgy.png"><p>电费</p></div></ion-col>
+    </ion-row>
+    <ion-row center>
+      <ion-col class="item-box" tappable (click)="onClickItem(4)"><div><img src="assets/img/x_cczgl.png"><p>宽带费</p></div></ion-col>
+      <ion-col class="item-box" tappable (click)="onClickItem(5)"><div><img src="assets/img/x_dlgy.png"><p>房租</p></div></ion-col>
+      <ion-col class="item-box"></ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

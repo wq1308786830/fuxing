@@ -1,0 +1,42 @@
+electricCosts {
+  .list-ios {
+    .item-ios {
+      font-size: 1.4rem;
+    }
+  }
+  ion-select {
+    width: 100%;
+    max-width: 100%;
+  }
+  .select-ios {
+    padding-left: 0;
+  }
+  .single-row {
+    padding: 2rem;
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+
+  .pay-money {
+    span {
+      &:first-child {
+        padding-right: 1rem;
+        border-right: 0.55px #eee solid;
+        margin-right: 1rem;
+      }
+      &:nth-child(2) {
+        width: 8rem;
+        border: 0.55px #eee solid;
+        border-radius: 6px;
+        display: inline-block;
+        padding: 0.3rem;
+        color: gray;
+        margin-right: 1rem;
+      }
+    }
+
+  }
+
+}
