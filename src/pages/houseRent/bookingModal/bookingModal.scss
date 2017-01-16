@@ -1,0 +1,35 @@
+bookingModal {
+  ion-item {
+    font-size: 1.4rem!important;
+  }
+  footer {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    border-top: 0.55px #e4e4e4 solid;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    label {
+      margin-top: 1rem;
+    }
+    .button-ios {
+      flex:1;
+      width: 90%;
+      margin: 1rem;
+    }
+  }
+  ion-label {
+    flex: initial;
+  }
+  .single-row {
+    padding: 2rem;
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+}

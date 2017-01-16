@@ -26,13 +26,31 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  green:      #390
 );
 
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
+
+$green-app: #390;
+
+$toolbar-ios-title-text-color: #fff;
+
+$toolbar-ios-button-color: #fff;
+
+$toolbar-ios-background: $green-app;
+
+$toolbar-ios-border-color: $green-app;
+
+$segment-button-ios-background-color-activated: $green-app;
+
+$tabs-ios-background: #fff;
+
+$button-ios-background-color: $green-app;
+
 
 
 

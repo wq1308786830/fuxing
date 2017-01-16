@@ -1,0 +1,64 @@
+houseDetail {
+  ion-slides {
+    height: 33%;
+  }
+  .slide-container {
+    width: 100%;
+    min-height: 100px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .house-detail-content {
+    padding: 1rem 2rem 6rem;
+    > div {
+      &:first-of-type {
+        font-size: 1.5rem;
+        border-bottom: 0.55px #e4e4e4 solid;
+      }
+
+      &:nth-of-type(2) {
+        border-bottom: 0.55px #e4e4e4 solid;
+      }
+
+      &:last-of-type {
+        dl {
+          dt {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+          }
+          dd {
+            margin: 0.8rem 0;
+            font-size: 1.3rem;
+          }
+        }
+      }
+
+      ion-grid {
+        padding-left: 0;
+        ion-col {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+
+  footer {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 0.55px #e4e4e4 solid;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    background-color: #fff;
+    .button-ios {
+      flex:1;
+      margin: 1rem;
+    }
+  }
+}

@@ -13,7 +13,7 @@
 
 <ion-content>
   <div padding>
-    <ion-segment [(ngModel)]="receiveTag">
+    <ion-segment [(ngModel)]="receiveTag" (ionChange)="segmentChanged()">
       <ion-segment-button value="notReceived">
         未签收
       </ion-segment-button>
@@ -34,20 +34,11 @@
             <ion-col>是否送达</ion-col>
           </ion-row>
 
-          <ion-row>
-            <ion-col>4442221</ion-col>
-            <ion-col>顺丰</ion-col>
-            <ion-col>已到</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>4442221</ion-col>
-            <ion-col>顺丰</ion-col>
-            <ion-col>已到</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>4442221</ion-col>
-            <ion-col>顺丰</ion-col>
-            <ion-col>已到</ion-col>
+          <ion-row *ngFor="let itemNot of notReceivedList">
+            <ion-col>{{itemNot.mailno}}</ion-col>
+            <ion-col>{{itemNot.mailcom}}</ion-col>
+            <ion-col *ngIf="itemNot.arrived">已到</ion-col>
+            <ion-col *ngIf="!itemNot.arrived">未到</ion-col>
           </ion-row>
 
         </ion-grid>
@@ -63,20 +54,10 @@
             <ion-col>签收时间</ion-col>
           </ion-row>
 
-          <ion-row>
-            <ion-col>4442221</ion-col>
-            <ion-col>顺丰</ion-col>
-            <ion-col>2016-10-10 12:30</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>4442221</ion-col>
-            <ion-col>顺丰</ion-col>
-            <ion-col>2016-10-10 12:30</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>4442221</ion-col>
-            <ion-col>顺丰</ion-col>
-            <ion-col>2016-10-10 12:30</ion-col>
+          <ion-row *ngFor="let item of receivedList">
+            <ion-col>{{item.mailno}}</ion-col>
+            <ion-col>{{item.mailcom}}</ion-col>
+            <ion-col>{{item.finishtime}}</ion-col>
           </ion-row>
 
         </ion-grid>
@@ -84,5 +65,8 @@
     </ion-list>
 
   </div>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

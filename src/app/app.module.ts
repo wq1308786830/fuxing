@@ -22,6 +22,18 @@ import {ItemModal} from "../pages/modals/itemModal";
 import {RatingModal} from "../pages/modals/ratingModal";
 import {MailReceiveApply} from "../pages/houseService/mailReceiveApply/mailReceiveApply";
 import {Cleaning} from "../pages/houseService/cleaning/cleaning";
+import {HouseDetail} from "../pages/houseRent/houseDetail/houseDetail";
+import {RentProtocolModal} from "../pages/houseRent/rentProtocolModal/rentProtocolModal";
+import {BookingModal} from "../pages/houseRent/bookingModal/bookingModal";
+import {MineNav} from "../pages/mine/mineNav/mineNav";
+import {PayRecord} from "../pages/mine/payRecord/payRecord";
+import {Settings} from "../pages/mine/settings/settings";
+import {MyMsg} from "../pages/mine/myMsg/myMsg";
+import {MyContract} from "../pages/mine/myContract/myContract";
+import {MyInfo} from "../pages/mine/myInfo/myInfo";
+import {CookieService} from "angular2-cookie/services/cookies.service";
+import {RentCosts} from "../pages/houseRent/roomCosts/roomCosts";
+import {PaymentListModal} from "../pages/payment/modals/listModal";
 
 @NgModule({
   declarations: [
@@ -33,9 +45,15 @@ import {Cleaning} from "../pages/houseService/cleaning/cleaning";
     AnnounceList,
     AnnounceDetail,
 
+    //houseRent
+    HouseDetail,
+    RentCosts,
+
     //modals
     ItemModal,
     RatingModal,
+    RentProtocolModal,
+    BookingModal,
 
     //payment
     PaymentHome,
@@ -44,6 +62,7 @@ import {Cleaning} from "../pages/houseService/cleaning/cleaning";
     ElectricCosts,
     NetCosts,
     RoomCosts,
+    PaymentListModal,
 
     //fault repair
     FaultRepair,
@@ -52,7 +71,15 @@ import {Cleaning} from "../pages/houseService/cleaning/cleaning";
     HouseHome,
     MailReceive,
     MailReceiveApply,
-    Cleaning
+    Cleaning,
+
+    //mine
+    MineNav,
+    PayRecord,
+    Settings,
+    MyMsg,
+    MyContract,
+    MyInfo
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -71,9 +98,15 @@ import {Cleaning} from "../pages/houseService/cleaning/cleaning";
     AnnounceList,
     AnnounceDetail,
 
+    //houseRent
+    HouseDetail,
+    RentCosts,
+
     //modals
     ItemModal,
     RatingModal,
+    RentProtocolModal,
+    BookingModal,
 
     //payment
     PaymentHome,
@@ -82,6 +115,7 @@ import {Cleaning} from "../pages/houseService/cleaning/cleaning";
     ElectricCosts,
     NetCosts,
     RoomCosts,
+    PaymentListModal,
 
     //fault repair
     FaultRepair,
@@ -90,12 +124,21 @@ import {Cleaning} from "../pages/houseService/cleaning/cleaning";
     HouseHome,
     MailReceive,
     MailReceiveApply,
-    Cleaning
+    Cleaning,
+
+    //mine
+    MineNav,
+    PayRecord,
+    Settings,
+    MyMsg,
+    MyContract,
+    MyInfo
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HirerHttpService,
-    Utils
+    Utils,
+    CookieService
   ]
 })
 export class AppModule {

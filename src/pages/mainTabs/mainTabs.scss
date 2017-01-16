@@ -4,21 +4,33 @@ main-tabs {
       border-top: 0.55px #e4e4e4 solid;
     }
     .tab-button-icon {
-      min-width: 3.2rem;
+      min-width: 6.6rem;
       height: 5rem;
       font-size: 3rem;
     }
   }
 
   .ion-ios-tab-index {
-    content: url("../assets/img/dbl_l_aq.png");
-    width: 3.2rem;
-    height: 5rem;
+    content: url("../assets/img/tg_sy2.png");
   }
 
   .ion-ios-tab-index-outline {
-    content: url("../assets/img/dbl_a_aq.png");
-    width: 3.2rem;
-    height: 5rem;
+    content: url("../assets/img/tg_sy1.png");
+  }
+
+  .ion-ios-tab-notice {
+    content: url("../assets/img/tg_tg2.png");
+  }
+
+  .ion-ios-tab-notice-outline {
+    content: url("../assets/img/tg_tg1.png");
+  }
+
+  .ion-ios-tab-mine {
+    content: url("../assets/img/tg_wd2.png");
+  }
+
+  .ion-ios-tab-mine-outline {
+    content: url("../assets/img/tg_wd1.png");
   }
 }

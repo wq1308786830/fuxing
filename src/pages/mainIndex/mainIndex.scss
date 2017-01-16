@@ -29,14 +29,17 @@ hirer-main {
   }
 
   .item-box {
+    color: gray;
     padding: 10px;
     text-align: center;
     img {
-      width: 5rem;
-      height: 5rem;
+      width: 6rem;
+      height: 6rem;
       border-radius: 100%;
-      margin-bottom: 1rem;
     }
+  }
+  .list-ios {
+    margin-top: 0;
   }
 
   ion-item {
@@ -55,15 +58,28 @@ hirer-main {
       div {
         width: 100%;
         p {
+          color: #000;
           display: flex;
           justify-content: space-between;
           margin-bottom: 1rem;
           font-size: 1.5rem;
+          &:nth-of-type(2) {
+            color: red;
+          }
           &:last-of-type {
             font-size: 1.3rem;
           }
         }
       }
     }
+  }
+
+  .sup-red {
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: red;
+    vertical-align: super;
+    margin-left: -6px;
   }
 }

@@ -1,4 +1,7 @@
 faultRepair {
+  ion-content {
+    background-color: #eee!important;
+  }
 
   .list-ios {
     ion-grid {
@@ -37,10 +40,35 @@ faultRepair {
         }
       }
     }
-    .item-ios {
 
+  }
+  .img-container {
+    background-color: #fff;
+    margin-top: 8px;
+    padding: 1px 16px;
+    color: #7f7f7f;
+    ion-label {
+      font-size: 1.4rem;
+    }
+  }
+  .single-row {
+    padding: 2rem;
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+
+  .repair-form {
+    ion-item.item-ios {
+      font-size: 1.4rem;
+      &:not(:first-of-type) {
+        .item-inner .input-wrapper .label-ios {
+          flex: 0.6;
+        }
+      }
       ion-textarea {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         border-bottom: 0.55px #eee solid;
         .text-input {
           height: 4 * 1.8rem;
@@ -49,6 +77,11 @@ faultRepair {
 
       .label-ios {
         flex: 1;
+        img {
+          width: 2rem;
+          height: 2rem;
+          margin-right: 0.4rem;
+        }
         .input-ios {
           .text-input {
             padding-right: 0;
@@ -80,73 +113,71 @@ faultRepair {
           }
         }
       }
+
+      &.sp-label {
+        .label-ios {
+          width: 100%;
+          flex: 1 !important;
+          display: flex;
+          justify-content: space-around;
+          label {
+            flex: 1;
+          }
+        }
+      }
     }
-  }
-  .img-container {
-    background-color: #fff;
-    margin-top: 8px;
-    padding: 1px 16px;
-    color: #7f7f7f;
-    ion-label {
-      font-size: 1.6rem;
-    }
-  }
-  .single-row {
-    padding: 2rem;
-    width: 100%;
-    button {
-      width: 100%;
+    .label-ios {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      img {
+        width: 2.6rem;
+        height: 2.6rem;
+        margin-right: 1rem;
+      }
+      .input-ios {
+        .text-input {
+          padding-right: 0;
+        }
+      }
+      .icon-ios {
+        margin-right: 1rem;
+      }
     }
   }
 
   .faultRepairList {
-    .item-ios {
-      padding-left: 0;
-      border-bottom: 0.55px #eee solid!important;
-      .item-inner {
-        padding-right: 0;
-      }
-    }
-    .label-ios {
-      margin-right: 0;
-      white-space: normal;
-      .icon-ios {
-        font-size: 2.4rem;
-      }
-      ion-row {
-        text-align: center;
-        font-size: 1.4rem;
-        &:not(.header) {
-          font-size: 1.2rem;
-        }
-        &:first-of-type {
-          ion-col:last-of-type {
-            font-size: 1.4rem;
+    ion-item {
+      margin-bottom: 1rem !important;
+      p {
+        margin-bottom: 1rem !important;
+        span {
+          &:last-of-type {
+            color: #2d2d2d;
+            margin-left: 1rem;
           }
         }
-        ion-col {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex: 1;
-          &:nth-of-type(2) {
-            flex: 1.5;
-          }
-          &:nth-of-type(3) {
-            flex: 1;
-          }
-          &:nth-of-type(4) {
-            flex: 1;
-            font-size: 1.8rem;
-          }
-          .button-ios {
-            font-size: 1.2rem;
-            height: 1.8rem;
-            padding: 0.3rem;
-          }
+        &:last-of-type {
+          margin-bottom: 0 !important;
         }
       }
-
+      ion-icon {
+        color: $green-app;
+      }
+      .bottom-bar {
+        font-size: 1.3rem;
+        line-height: 2.6;
+        color: gray;
+        margin-top: 1rem;
+        margin-bottom: -0.4rem;
+        border-top: 0.55px #eee dashed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        button {
+          font-size: 1.2rem !important;
+        }
+      }
     }
   }
   .label-ios + ion-input .text-input {

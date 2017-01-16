@@ -1,6 +1,6 @@
 regist-page {
   ion-content {
-    background-image: url("../assets/img/splash.jpg");
+    //background-image: url("../assets/img/splash.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 
@@ -19,7 +19,7 @@ regist-page {
       ion-item {
         margin-top: 2rem;
         background: transparent;
-        border: 1px solid #ffffff;
+        border: 1px solid #e4e4e4;
         border-radius: 5px;
 
         ion-input {

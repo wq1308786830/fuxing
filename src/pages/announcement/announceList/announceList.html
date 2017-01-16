@@ -8,17 +8,20 @@
 
 <ion-content>
   <ion-list>
-    <ion-item (click)="onClickDetail()">
-      <h3>专业家电维修，为您服务到家</h3>
-      <p>亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好</p>
-      <img src="">
-      <p>2016.08.22</p>
+    <ion-item (click)="onClickDetail()" *ngFor="let item of notices">
+      <h3>{{item.title}}</h3>
+      <p>{{item.content}}</p>
+      <img [src]="item.imgUrl">
+      <p>{{item.createTime}}</p>
     </ion-item>
-    <ion-item (click)="onClickDetail()">
-      <h3>专业家电维修，为您服务到家</h3>
-      <p>亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好</p>
-      <img src="">
-      <p>2016.08.22</p>
-    </ion-item>
+    <!--<ion-item (click)="onClickDetail()">-->
+      <!--<h3>专业家电维修，为您服务到家</h3>-->
+      <!--<p>亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好亲爱的业主您好</p>-->
+      <!--<img src="">-->
+      <!--<p>2016.08.22</p>-->
+    <!--</ion-item>-->
   </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

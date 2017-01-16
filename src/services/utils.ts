@@ -2,12 +2,13 @@
  * Created by russell on 2016/12/9.
  */
 import {Injectable} from '@angular/core';
-import {AlertController} from 'ionic-angular';
+import {AlertController, ToastController} from 'ionic-angular';
 
 @Injectable()
 export class Utils {
 
-  constructor(public alertCtrl: AlertController,) {
+  constructor(public alertCtrl: AlertController,
+              public toastCtrl: ToastController) {
   }
 
   getDayTimeStr(time: Date) {
@@ -38,5 +39,14 @@ export class Utils {
       buttons: ['确定']
     });
     alert.present();
+  }
+
+  presentToast(msg: string) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
   }
 }

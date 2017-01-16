@@ -1,0 +1,58 @@
+mineNav {
+  .list-ios {
+    .item-ios {
+      align-items: center;
+      &:first-of-type {
+        height: auto;
+        border-bottom: 0.55px #e4e4e4 solid;
+        .item-inner {
+          border: none;
+        }
+        .label-ios {
+          margin: 3rem 1rem 3rem 0;
+          h2 {
+            margin-bottom: 2rem;
+            span {
+              font-size: 1.4rem;
+              margin-left: 1rem;
+            }
+          }
+        }
+      }
+      font-size: 1.6rem;
+
+      ion-icon {
+        color: gray;
+        &:first-of-type {
+          margin-right: 1rem;
+        }
+      }
+
+      ion-thumbnail {
+        flex: 3;
+      }
+      .item-inner {
+        flex: 7;
+      }
+      ion-thumbnail[item-left] {
+        margin-right: 2rem;
+        img {
+          border-radius: 50%;
+        }
+      }
+
+      &:not(:first-of-type) {
+        .label-ios {
+          display: flex;
+          align-items: center;
+          img {
+            width: 2.6rem;
+            height: 2.6rem;
+            margin-right: 1rem;
+          }
+        }
+      }
+
+    }
+  }
+}

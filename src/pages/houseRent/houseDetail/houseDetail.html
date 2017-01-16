@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      房屋详情
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-slides [options]="mySlideOptions">
+    <ion-slide style="background-color: green">
+      <h2>Slide 1</h2>
+    </ion-slide>
+    <ion-slide style="background-color: blue">
+      <h2>Slide 2</h2>
+    </ion-slide>
+    <ion-slide style="background-color: red">
+      <h2>Slide 3</h2>
+    </ion-slide>
+  </ion-slides>
+
+  <div class="house-detail-content">
+    <div>
+      <p>{{gardenDetail.name}}</p>
+      <p>租金：{{gardenDetail.rent}}{{gardenDetail.rent_unit}}</p>
+    </div>
+    <div>
+      <ion-grid>
+        <ion-row>
+          <ion-col>户型：4室2厅4卫</ion-col><ion-col>面积：{{gardenDetail.area}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>装修：{{gardenDetail.decoration}}</ion-col><ion-col>楼层：12/20</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>朝向：{{gardenDetail.towards}}</ion-col><ion-col>年代：2012年</ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div>
+      <dl>
+        <dt>房源描述</dt>
+        <dd>{{gardenDetail.description}}</dd>
+        <!--<dd>能耗费：{{gardenDetail.energyMonthCost}}元/月/平方</dd>-->
+        <!--<dd>推荐理由：{{gardenDetail.recommendReason}}</dd>-->
+      </dl></div>
+  </div>
+
+  <footer>
+    <button ion-button (click)="modalProtocal()" *ngIf="!httpService.accountInfo.contractid">租赁签约</button>
+    <button ion-button (click)="goRentPage()" *ngIf="httpService.accountInfo.contractid">租赁缴费</button>
+    <button ion-button (click)="modalBooking()">预约看房</button>
+  </footer>
+
+</ion-content>

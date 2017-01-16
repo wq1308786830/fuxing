@@ -5,7 +5,7 @@
     </ion-title>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
-        <span color="primary">取消</span>
+        <span>取消</span>
       </button>
     </ion-buttons>
   </ion-toolbar>
@@ -14,7 +14,7 @@
 
   <div class="rating">
     <div>
-      <ion-icon name="{{star.name}}" *ngFor="let star of stars; let i = index" (click)="scoreRate(i)"></ion-icon>
+      <ion-icon *ngFor="let star of stars; let i = index" name="{{star.name}}" (click)="scoreRate(i)"></ion-icon>
     </div>
     <ion-textarea [(ngModel)]="ratingContent" placeholder="请输入您对本次服务的评价"></ion-textarea>
   </div>

@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>我的</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item (click)="goItem(1)">
+      <ion-thumbnail item-left (click)="uploadThumbnail()">
+        <img src="img/thumbnail-totoro.png">
+      </ion-thumbnail>
+      <h2>{{accountInfo.name}}<span>{{accountInfo.mobiPhone}}</span></h2>
+      <p><ion-icon name="home"></ion-icon>{{accountInfo.houseid}}</p>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+    <ion-item (click)="goItem(2)">
+      <img src="assets/img/xta_1.png">
+      <span>缴费记录</span>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="goItem(3)">
+      <img src="assets/img/xta_2.png">
+      <span>报修记录</span>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="goItem(4)">
+      <img src="assets/img/xta_3.png">
+      <span>服务记录</span>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="goItem(5)">
+      <img src="assets/img/xta_4.png">
+      <span>我的合约</span>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="goItem(6)">
+      <img src="assets/img/xta_5.png">
+      <span>我的消息</span>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+    <ion-item (click)="goItem(7)">
+      <img src="assets/img/xta_6.png">
+      <span>设置</span>
+      <ion-icon name="arrow-forward" item-right></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -11,7 +11,7 @@
 	<div class="box-container">
 
 		<ion-item>
-			<ion-input type="text" placeholder="请输入账号" [(ngModel)]="user.phoneNo"></ion-input>
+			<ion-input type="text" placeholder="请输入账号" [(ngModel)]="user.phoneNo" required minlength="4" maxlength="24"></ion-input>
 		</ion-item>
 
 		<ion-item>

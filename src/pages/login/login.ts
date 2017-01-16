@@ -16,7 +16,6 @@ export class LoginPage implements OnInit {
 
   constructor(public navCtrl: NavController,
               public loadingCtrl: LoadingController,
-              public platform: Platform,
               public util: Utils,
               public httpService: HirerHttpService) {
     this.user = {};
@@ -32,27 +31,24 @@ export class LoginPage implements OnInit {
   onClickLogin() {
     if (this.user.phoneNo && this.user.password) {
 
-      let loader = this.loadingCtrl.create({
-        content: "登录中..."
-      });
+      let loader = this.loadingCtrl.create({content: "登录中..."});
       loader.present();
 
       this.httpService.login(this.user).subscribe(info => {
+        this.httpService.token = info;
+        this.getAccountInfo();
+        localStorage.setItem("phoneNo", this.user.phoneNo);
+        this.httpService.isLogin = true;
+        this.navCtrl.pop();
 
-        if (info) {
-          localStorage.setItem("phoneNo", this.user.phoneNo);
-          this.httpService.accountInfo = info;
-          this.httpService.isLogin = true;
-          this.navCtrl.pop();
-        }
         loader.dismiss();
 
       }, error => {
         loader.dismiss();
-        if (error === "ErrorPassword") {
-          this.util.showAlertMsg('您输入的用户名和密码不匹配，请重新输入.');
+        if (error != "error") {
+          this.util.showAlertMsg(error);
         } else {
-          this.util.showAlertMsg('网络连接出现错误，请稍后再试.');
+          this.util.showAlertMsg('未知错误，请稍后再试.');
         }
       });
 
@@ -63,5 +59,17 @@ export class LoginPage implements OnInit {
 
   onClickRegist() {
     this.navCtrl.push(RegisterPage);
+  }
+
+  getAccountInfo() {
+    this.httpService.getUserInfo().subscribe(data => {
+      if (data) {
+        this.httpService.accountInfo = data;
+      } else {
+        this.util.showAlertMsg("获取用户信息失败,请重新登录");
+      }
+    }, err => {
+      this.util.showAlertMsg("获取用户信息失败,请重新登录");
+    });
   }
 }

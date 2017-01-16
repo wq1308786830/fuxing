@@ -5,7 +5,7 @@
     </ion-title>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
-        <span color="primary">取消</span>
+        <span>取消</span>
       </button>
     </ion-buttons>
   </ion-toolbar>
@@ -18,8 +18,8 @@
 
   <div class="input-row" *ngIf="title == '修改联系人'">
     <ion-input type="text" [(ngModel)]="formDetail.masterName" placeholder="请输入联系人名"></ion-input>
-    <label><input type="radio" [(ngModel)]="formDetail.masterSex" [value]="0">先生</label>
-    <label><input type="radio" [(ngModel)]="formDetail.masterSex" [value]="1">女士</label>
+    <label><input type="radio" [(ngModel)]="formDetail.masterSex" [value]="true">先生</label>
+    <label><input type="radio" [(ngModel)]="formDetail.masterSex" [value]="false">女士</label>
   </div>
   <div class="single-row">
     <button ion-button (click)="onClickSubmit()">确定</button>

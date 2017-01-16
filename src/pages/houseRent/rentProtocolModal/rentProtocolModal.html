@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      租赁签约
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span>取消</span>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list no-lines>
+    <ion-item>
+      {{contract.title}}
+    </ion-item>
+    <ion-item>
+      {{contract.contenet}}
+    </ion-item>
+  </ion-list>
+  <footer>
+    <label><input type="checkbox" [(ngModel)]="agreement">已阅读并同意租赁协议内容</label>
+    <button ion-button (click)="onClickSubmit()">确认签约</button>
+  </footer>
+</ion-content>

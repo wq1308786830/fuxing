@@ -1,0 +1,22 @@
+myInfo {
+  .list-ios {
+    .item-ios {
+      &:not(:nth-of-type(2)) {
+        color: gray;
+        font-size: 1.4rem;
+      }
+      text-align: center;
+      img {
+        height: 8rem;
+        width: 8rem;
+      }
+    }
+  }
+  .single-row {
+    padding: 2rem;
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+}

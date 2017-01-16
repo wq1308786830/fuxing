@@ -1,0 +1,34 @@
+myMsg {
+  .content-ios{
+    background-color: #f8f8f8;
+    .list-ios {
+      padding: 1rem;
+      .item-ios {
+        border: 0.55px #eee solid;
+        border-radius: 0.6rem;
+        margin-bottom: 1rem;
+        &:first-child {
+          border-top: 0.55px #eee solid;
+        }
+        &:last-child {
+          border-bottom: 0.55px #eee solid;
+        }
+        p {
+          margin-bottom: 1rem;
+          &:last-child:before {
+            content: '';
+            background: #8c8c8c;
+            padding-left: 2rem;
+            margin-right: 0.4rem;
+            width: 2rem;
+            height: 2rem;
+          }
+        }
+
+        .item-inner {
+          border: none;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>退租申请</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label fixed>银行卡号</ion-label>
+    <ion-input type="text" [(ngModel)]="formData.bankCardNo" placeholder="请输入银行卡号"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>开户银行</ion-label>
+    <ion-input type="text" [(ngModel)]="formData.bankCardName" placeholder="请填写支行全称（银行名称+支行名称）"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>开户姓名</ion-label>
+    <ion-input type="text" [(ngModel)]="formData.bankCardUserName" placeholder="请输入开户姓名"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>身份证号</ion-label>
+    <ion-input type="text" [(ngModel)]="formData.bankCardUserId" placeholder="请输入身份证号"></ion-input>
+  </ion-item>
+  <div class="single-row">
+    <button ion-button (click)="onClickSubmit()">提交</button>
+  </div>
+</ion-content>

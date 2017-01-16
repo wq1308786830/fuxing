@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      预约看房
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span>取消</span>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item class="item-input">
+      <ion-label>房源类型</ion-label><ion-input [ngModel]="gardenDetail.name" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>看房时间</ion-label>
+      <ion-datetime displayFormat="YYYY年MM月DD日 hh:mm" [(ngModel)]="booking.changeDate" doneText="完成"
+                    cancelText="取消"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>联系电话</ion-label>
+      <ion-input [(ngModel)]="booking.phoneNo"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="single-row">
+    <button ion-button (click)="onClickSubmit()">提交</button>
+  </div>
+</ion-content>

@@ -37,11 +37,17 @@ houseHome {
           border-right: none;
         }
         div {
-          margin-top: 2rem;
+          margin-top: 1rem;
           text-align: center;
           font-size: 1.6rem;
           img {
-            height: 4rem;
+            height: 5rem;
+            width: 5rem;
+          }
+          p {
+            color: gray;
+            margin: 1rem 0;
+            font-size: 1.4rem;
           }
         }
       }

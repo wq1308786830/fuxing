@@ -2,7 +2,9 @@
  * Created by russell on 2016/12/13.
  */
 import {Component, OnInit} from "@angular/core";
-import {ModalController, NavController} from "ionic-angular";
+import {ModalController, NavController, LoadingController} from "ionic-angular";
+import {HirerHttpService} from "../../../services/hirer-http-service";
+import {Utils} from "../../../services/utils";
 import {ItemModal} from "../../modals/itemModal";
 @Component({
   selector: 'mailReceiveApply',
@@ -13,39 +15,49 @@ export class MailReceiveApply implements OnInit {
   public formDetail: any;
 
   constructor(public navCtrl: NavController,
-              public modalCtrl: ModalController) {
+              public modalCtrl: ModalController,
+              public loadingCtrl: LoadingController,
+              public util: Utils,
+              public httpService: HirerHttpService) {
     this.formDetail = {
       mailCompany: '',
       mailNo: '',
-      masterName: '',
-      masterPhoneNo: '',
-      masterAddress: '',
-    }
+      masterName: this.httpService.accountInfo.name || '',
+      masterSex: this.httpService.accountInfo.gender || true,
+      masterPhoneNo: this.httpService.accountInfo.mobiPhone || '',
+      masterAddress: ''
+    };
   }
 
   ngOnInit() {
-    this.formDetail = {
-      repairContent: '',
-      masterName: '李阳',
-      masterPhoneNo: '1381818181',
-      masterAddress: '于都大楼于都大楼',
-      changeDate: '21-11-2016',
-      masterAtHome: false
-    }
+    this.httpService.getRentHouseInfo(this.httpService.accountInfo.houseid.toString()).subscribe(data => {
+      this.formDetail.masterAddress = data.name;
+    }, err => {
+      this.util.showAlertMsg("获取房间地址失败");
+    });
   }
 
   changePhoneNo() {
-    let modal = this.modalCtrl.create(ItemModal, {title: '修改联系电话'});
+    let modal = this.modalCtrl.create(ItemModal, {title: '修改联系电话', formDetail: this.formDetail});
     modal.present();
   }
 
   changeName() {
-    let modal = this.modalCtrl.create(ItemModal, {title: '修改联系人'});
+    let modal = this.modalCtrl.create(ItemModal, {title: '修改联系人', formDetail: this.formDetail});
     modal.present();
   }
 
   onClickSubmit() {
-    this.navCtrl.pop();
+
+    let loader = this.loadingCtrl.create({content: "正在提交..."});
+    loader.present();
+    this.httpService.mailApply(this.formDetail, '').subscribe(() => {
+      loader.dismiss();
+      this.navCtrl.pop();
+    }, err => {
+      loader.dismiss();
+      this.util.showAlertMsg("提交失败，请重试");
+    });
   }
 
 }

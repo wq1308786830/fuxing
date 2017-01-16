@@ -4,7 +4,7 @@
       首页
     </ion-title>
     <ion-buttons end>
-      <button ion-button color="black" (click)="onClickNotices()"><img src="assets/img/a.png"><img src="assets/img/a.png" *ngIf=""></button>
+      <button ion-button color="black" (click)="onClickNotices()"><img src="assets/img/fx_5.png"><sup class="sup-red"></sup><img src="assets/img/fx_5.png" *ngIf=""></button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -29,38 +29,24 @@
 
   <ion-grid>
     <ion-row center>
-      <ion-col class="item-box" tappable (click)="onClickItem(1)"><img src="assets/img/x_cczgl.png"><br>通知公告</ion-col>
-      <ion-col class="item-box" tappable (click)="onClickItem(2)"><img src="assets/img/x_dlgy.png"><br>费用交纳</ion-col>
-      <ion-col class="item-box" tappable (click)="onClickItem(3)"><img src="assets/img/x_dlgy.png"><br>故障报修</ion-col>
-      <ion-col class="item-box" tappable (click)="onClickItem(4)"><img src="assets/img/x_gcxmjg.png"><br>管家服务</ion-col>
+      <ion-col class="item-box" tappable (click)="onClickItem(1)"><img src="assets/img/sy_1.png"><br>通知公告</ion-col>
+      <ion-col class="item-box" tappable (click)="onClickItem(2)"><img src="assets/img/sy_2.png"><br>费用交纳</ion-col>
+      <ion-col class="item-box" tappable (click)="onClickItem(3)"><img src="assets/img/sy_3.png"><br>故障报修</ion-col>
+      <ion-col class="item-box" tappable (click)="onClickItem(4)"><img src="assets/img/sy_4.png"><br>管家服务</ion-col>
     </ion-row>
   </ion-grid>
 
   <ion-list no-lines>
-    <ion-item (click)="onClickDetail()">
+    <ion-item *ngFor="let item of gardenList" (click)="onClickDetail(item.gid)">
       <div class="item-content">
         <div>
           <ion-thumbnail>
-            <img src="assets/img/x_cczgl.png">
+            <img [src]="item.imgurl">
           </ion-thumbnail>
           <div>
-            <p><span>4室2厅4卫</span><span>320㎡</span></p>
-            <p><span>10000元/月</span></p>
-            <p><span>创客空间B栋C户型</span><span>简装</span></p>
-          </div>
-        </div>
-      </div>
-    </ion-item>
-    <ion-item>
-      <div class="item-content">
-        <div>
-          <ion-thumbnail>
-            <img src="assets/img/x_cczgl.png">
-          </ion-thumbnail>
-          <div>
-            <p><span>4室2厅4卫</span><span>320㎡</span></p>
-            <p><span>10000元/月</span></p>
-            <p><span>创客空间B栋C户型</span><span>简装</span></p>
+            <p><span>{{item.name}}</span><span>{{item.area}}㎡</span></p>
+            <p><span>{{item.rent}}{{item.rent_unit}}</span></p>
+            <p><span>{{item.gname}}</span><span>{{item.decoration}}</span></p>
           </div>
         </div>
       </div>

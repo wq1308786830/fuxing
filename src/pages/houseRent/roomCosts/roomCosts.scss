@@ -1,0 +1,73 @@
+rentCost {
+  .list-ios {
+    .item-ios {
+      font-size: 1.4rem;
+      span {
+        &:first-of-type {
+          color: gray;
+          margin-right: 1rem;
+        }
+      }
+      p {
+        margin-top: 0.6rem;
+        &.redtip {
+        color: #f53d3d;
+          font-size: 1.2rem;
+      }
+      }
+    }
+  }
+  ion-select {
+    width: 100%;
+    max-width: 100%;
+  }
+  ion-label {
+    display: flex;
+    justify-content: space-between;
+  }
+  .select-ios {
+    padding-left: 0;
+  }
+  .single-row {
+    padding: 2rem;
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+
+  .pay-money {
+    span {
+      span {
+        &:nth-child(2) {
+          padding-right: 1rem;
+        }
+        &:nth-child(1) {
+          width: 8rem;
+          border: 0.55px #eee solid;
+          border-radius: 6px;
+          display: inline-block;
+          padding: 0.3rem;
+          color: gray;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+
+  .checkbox {
+    ion-label {
+      display: flex;
+    }
+    label {
+      font-size: 1.2rem;
+      margin-right: 1rem;
+      input {
+        vertical-align: bottom;
+      }
+      button {
+        width: inherit;
+      }
+    }
+  }
+}

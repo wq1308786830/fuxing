@@ -1,5 +1,8 @@
-import {ViewController, NavParams, Platform} from "ionic-angular";
+import {ViewController, NavParams, Platform, LoadingController} from "ionic-angular";
 import {Component} from "@angular/core";
+import {HirerHttpService} from "../../services/hirer-http-service";
+import {RepairInfo} from "../../beans/beans";
+import {Utils} from "../../services/utils";
 /**
  * Created by russell on 2016/12/15.
  */
@@ -15,12 +18,17 @@ export class RatingModal {
   public rateScore: number = 0;
   public ratingContent: string = '';
 
-  public data: any;
+  public data: RepairInfo;
+  public type: string;
 
   constructor(public platform: Platform,
+              public loadingCtrl: LoadingController,
               public params: NavParams,
-              public viewCtrl: ViewController) {
-    this.data = this.params.get('data');
+              public viewCtrl: ViewController,
+              public util: Utils,
+              public httpService: HirerHttpService) {
+    this.data = params.get('data');
+    this.type = params.get('type');
     this.stars = [
       {name: 'star-outline'},
       {name: 'star-outline'},
@@ -49,6 +57,22 @@ export class RatingModal {
   }
 
   onClickSubmit() {
-    this.dismiss();
+    let uri = '';
+    if (this.type === 'repair') {
+      uri = '/repair/score.do';
+    }
+    if (this.type === 'clean') {
+      uri = '/clean/score.do';
+    }
+
+    let loader = this.loadingCtrl.create({content: "正在提交..."});
+    loader.present();
+    this.httpService.scoreItem(uri, this.data.id, this.rateScore, this.ratingContent).subscribe(() => {
+      loader.dismiss();
+      this.dismiss();
+    }, err => {
+      loader.dismiss();
+      this.util.showAlertMsg("提交失败，请重试");
+    });
   }
 }
