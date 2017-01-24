@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      评价
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span color="primary">取消</span>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <div class="rating">
+    <div>
+      <ion-icon name="{{star.name}}" *ngFor="let star of stars; let i = index" (click)="scoreRate(i)"></ion-icon>
+    </div>
+    <ion-textarea [(ngModel)]="ratingContent" placeholder="请输入您对本次维修的评价"></ion-textarea>
+  </div>
+  <div class="single-row">
+    <button ion-button (click)="onClickSubmit()">提交</button>
+  </div>
+</ion-content>

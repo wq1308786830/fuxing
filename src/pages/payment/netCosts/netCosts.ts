@@ -37,6 +37,11 @@ export class NetCosts implements OnInit{
   }
 
   ngOnInit() {
+    if (!this.httpService.accountInfo.houseid) {
+      this.navCtrl.pop();
+      this.util.showAlertMsg('您尚未租房，无法继续操作');
+      return;
+    }
     let loader = this.loadingCtrl.create({content: "加载中..."});
     loader.present();
     this.httpService.getPaymentInfo(NetCosts.E_FEE_NET).subscribe(data => {
@@ -92,7 +97,7 @@ export class NetCosts implements OnInit{
         this.formData.paymoney = data;
       }
     }, err => {
-      this.util.showAlertMsg('计价失败，请重试');
+      this.util.showAlertMsg(err);
     });
   }
 }

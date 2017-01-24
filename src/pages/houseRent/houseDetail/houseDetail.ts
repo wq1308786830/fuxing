@@ -5,7 +5,7 @@ import {Component, OnInit} from "@angular/core";
 import {NavController, ModalController, LoadingController, NavParams} from "ionic-angular";
 import {RentProtocolModal} from "../rentProtocolModal/rentProtocolModal";
 import {BookingModal} from "../bookingModal/bookingModal";
-import {GarDenStyleBean} from "../../../beans/beans";
+import {GarDenStyleBean, HouseSimpleBean} from "../../../beans/beans";
 import {HirerHttpService} from "../../../services/hirer-http-service";
 import {Utils} from "../../../services/utils";
 import {RentCosts} from "../roomCosts/roomCosts";
@@ -27,6 +27,7 @@ export class HouseDetail implements OnInit {
   public agreement: boolean;
   public gardenDetail: GarDenStyleBean;
   public gardenid: number;
+  public houseList: HouseSimpleBean[];
 
   constructor(public navCtrl: NavController,
               public modalCtrl: ModalController,
@@ -36,6 +37,7 @@ export class HouseDetail implements OnInit {
               public httpService: HirerHttpService) {
     this.gardenDetail = new GarDenStyleBean();
     this.agreement = false;
+    this.houseList = [];
     this.gardenid = params.get("gardenid");
   }
 
@@ -47,9 +49,19 @@ export class HouseDetail implements OnInit {
       loader.dismiss();
       if (data) {
         this.gardenDetail = data[0];
+        this.getWaitRentHouse();
       }
     }, err => {
       loader.dismiss();
+    });
+  }
+
+  getWaitRentHouse() {
+    this.httpService.waitRentHouseList(this.gardenDetail).subscribe(data => {
+      if (data.length) {
+        this.houseList = data;
+      }
+    }, err => {
     });
   }
 

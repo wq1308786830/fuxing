@@ -2,11 +2,22 @@ propertyCosts {
   .list-ios {
     .item-ios {
       font-size: 1.4rem;
+      .label-ios {
+        display: flex;
+        justify-content: space-between;
+        >span {
+          &:first-of-type {
+            color: gray;
+          }
+        }
+      }
     }
   }
   ion-select {
     width: 100%;
     max-width: 100%;
+    padding: 0 0.6rem!important;
+    color: #000!important;
   }
   .select-ios {
     padding-left: 0;
@@ -17,26 +28,6 @@ propertyCosts {
     button {
       width: 100%;
     }
-  }
-
-  .pay-money {
-    span {
-      &:first-child {
-        padding-right: 1rem;
-        border-right: 0.55px #eee solid;
-        margin-right: 1rem;
-      }
-      &:nth-child(2) {
-        width: 8rem;
-        border: 0.55px #eee solid;
-        border-radius: 6px;
-        display: inline-block;
-        padding: 0.3rem;
-        color: gray;
-        margin-right: 1rem;
-      }
-    }
-
   }
 
 }

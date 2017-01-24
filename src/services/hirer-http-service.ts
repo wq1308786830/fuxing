@@ -34,15 +34,15 @@ export class HirerHttpService {
     }
 
     if (body.status === 10000) {
-      throw new Error("请登录");
+      throw new Error(body.msg);
     } else if (body.status === 0) {
-      throw new Error("失败");
+      throw new Error(body.msg);
     } else if (body.status === 10001) {
-      throw new Error("用户未被授权");
+      throw new Error(body.msg);
     } else if (body.status === 10002) {
-      throw new Error("请求参数错误");
+      throw new Error(body.msg);
     } else {
-      throw new Error(body.msg || "error");
+      throw new Error(body.msg || "未知错误");
     }
   }
 
@@ -52,7 +52,7 @@ export class HirerHttpService {
 
     if (errMsg === "请登录") {
       // this.app.getActiveNav().push(LoginPage);
-      return null;
+      return Observable.throw(errMsg);
     } else {
       return Observable.throw(errMsg);
     }
@@ -88,6 +88,15 @@ export class HirerHttpService {
   }
 
   /**
+   * 退出登录
+   * @returns {Observable<any>}
+   */
+  public logout(): Observable<any> {
+
+    return this.basePost("/auth/logout.do");
+  }
+
+  /**
    * 注册
    * @param user
    * @returns {Observable<R>}
@@ -97,6 +106,19 @@ export class HirerHttpService {
     let body = 'name='+user.username+'&uaccount='+user.phoneNo+'&upasswd='+user.password;
 
     return this.basePost("/auth/reg.do", body);
+  }
+
+  /**
+   * 修改密码
+   * @param oldpwd
+   * @param newpwd
+   * @returns {Observable<any>}
+   */
+  public saveNewPass(oldpwd: string, newpwd: string): Observable<any> {
+
+    let body = 'oldpwd='+oldpwd+'&newpwd='+newpwd;
+
+    return this.basePost("/auth/newpwd.do", body);
   }
 
   /**
@@ -390,8 +412,8 @@ export class HirerHttpService {
    */
   public doUnrent(formData: any): Observable<any> {
 
-    let body = 'bankcard='+formData.bankcard+'&bankname='+formData.bankname+
-      '&bankusrname='+formData.bankusrname+'&bankusridcard'+formData.bankusridcard;
+    let body = 'bankcard='+formData.bankCardNo+'&bankname='+formData.bankCardName+
+      '&bankusrname='+formData.bankCardUserName+'&bankusridcard='+formData.bankCardUserId+'&unrentdate='+formData.unrentdate;
 
     return this.basePost("/money/unrent.do", body);
   }
@@ -458,6 +480,18 @@ export class HirerHttpService {
       '&count='+formData.count+'&furnitures='+formData.furnitures;
 
     return this.basePost("/money/paymoney.do", body);
+  }
+
+  /**
+   * 上传头像
+   * @param img
+   * @returns {Observable<any>}
+   */
+  public saveAvatar(img: string): Observable<any> {
+
+    let body = 'img='+img;
+
+    return this.basePost("/auth/headimg.do", body);
   }
 
 }

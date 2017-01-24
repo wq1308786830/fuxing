@@ -30,11 +30,15 @@ export class MailReceiveApply implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService.getRentHouseInfo(this.httpService.accountInfo.houseid.toString()).subscribe(data => {
-      this.formDetail.masterAddress = data.name;
-    }, err => {
-      this.util.showAlertMsg("获取房间地址失败");
-    });
+    if (this.httpService.accountInfo.houseid) {
+      this.httpService.getRentHouseInfo(this.httpService.accountInfo.houseid + '').subscribe(data => {
+        if (data) {
+          this.formDetail.masterAddress = data.name;
+        }
+      }, err => {
+        this.util.showAlertMsg(err);
+      });
+    }
   }
 
   changePhoneNo() {
@@ -56,7 +60,7 @@ export class MailReceiveApply implements OnInit {
       this.navCtrl.pop();
     }, err => {
       loader.dismiss();
-      this.util.showAlertMsg("提交失败，请重试");
+      this.util.showAlertMsg(err);
     });
   }
 

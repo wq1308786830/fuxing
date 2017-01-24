@@ -1,0 +1,32 @@
+aboutUs {
+
+  ion-item {
+    margin-top: 10rem!important;
+    div.item-inner {
+      border-bottom: 0!important;
+    }
+    ion-label {
+      text-align: center;
+      img {
+        width: 80px;
+        height: 80px;
+      }
+      h1 {
+        margin-top: 1.4rem!important;
+        color: $green-app;
+        font-size: 4rem!important;
+      }
+      p {
+        margin-top: 1rem;
+      }
+    }
+  }
+  ion-footer {
+    color: gray;
+    p {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+  }
+}

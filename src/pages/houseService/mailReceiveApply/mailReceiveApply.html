@@ -34,16 +34,18 @@
       </ion-label>
       <ion-input [(ngModel)]="formDetail.masterName" readonly></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item class="with-arrow">
       <ion-label>
         <ion-icon name="home"></ion-icon>
         服务地址
       </ion-label>
-      <ion-input [(ngModel)]="formDetail.masterAddress" readonly></ion-input>
+      <ion-input *ngIf="httpService.accountInfo.houseid" [(ngModel)]="formDetail.masterAddress" readonly></ion-input>
+      <ion-input *ngIf="!httpService.accountInfo.houseid" value="未租房" readonly></ion-input>
     </ion-item>
 
     <div class="single-row">
-      <button ion-button (click)="onClickSubmit()">提交</button>
+      <button *ngIf="httpService.accountInfo.houseid" ion-button (click)="onClickSubmit()">提交</button>
+      <button *ngIf="!httpService.accountInfo.houseid" ion-button disabled>提交</button>
     </div>
   </ion-list>
 

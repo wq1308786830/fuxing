@@ -1,3 +1,30 @@
 cleaning {
   @extend faultRepair;
+  ion-item:nth-of-type(4) {
+    .input-wrapper:after {
+      color: #fff;
+    }
+  }
+  ion-item:last-of-type {
+    border-top: 0.55px #eee solid!important;
+    .item-inner .input-wrapper {
+      display: block;
+      ion-textarea {
+        margin-bottom: 1rem!important;
+      }
+      .label-ios {
+        margin-left: 0;
+      }
+      textarea {
+        margin-left: 0;
+      }
+    }
+  }
+  .label-ios[stacked] {
+    font-size: 1.4rem;
+  }
+  .sp-label {
+    padding-left: 10rem;
+    border-bottom: 0.55px #eee solid;
+  }
 }

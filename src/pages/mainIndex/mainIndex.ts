@@ -37,20 +37,7 @@ export class MainIndex implements OnInit{
     this.gardenList = [];
   }
 
-  ngOnInit() {
-    let loading = this.loadingCtrl.create({content: "正在加载..."});
-    loading.present();
-    this.httpService.gardenListStyle().subscribe( data => {
-      if (data) {
-        this.gardenList = data;
-      }
-      loading.dismiss();
-    }, err => {
-      loading.dismiss();
-    });
-  }
-
-  ionViewDidEnter() {
+  ngOnInit(): void {
     let loading = this.loadingCtrl.create({content: "正在加载..."});
     loading.present();
     this.httpService.gardenListStyle().subscribe( data => {

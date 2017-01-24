@@ -16,7 +16,9 @@ export class MakerInfo {
   mobiPhone: string;
   account: string;
   houseid: number;
+  housename: string;
   contractid: number;
+  idCardImg2: string;
 }
 
 /**
@@ -79,7 +81,6 @@ export class HouseToRentInfo {
   deposit: number;   //押金
   standarFurnitrues: TblFurnitureExBean[];  //标配家具
   optionalFurnitrues: TblFurnitureExBean[]; //选配家具
-
 }
 
 export class TblFurnitureExBean {
@@ -91,6 +92,7 @@ export class TblFurnitureExBean {
   damagePrice: number;     //损毁的赔偿金
   price: number;           //家具原价
   deposit: number;         //家具需要的押金
+  needRent: boolean;
   choosed: boolean;
 }
 

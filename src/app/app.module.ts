@@ -31,9 +31,11 @@ import {Settings} from "../pages/mine/settings/settings";
 import {MyMsg} from "../pages/mine/myMsg/myMsg";
 import {MyContract} from "../pages/mine/myContract/myContract";
 import {MyInfo} from "../pages/mine/myInfo/myInfo";
-import {CookieService} from "angular2-cookie/services/cookies.service";
 import {RentCosts} from "../pages/houseRent/roomCosts/roomCosts";
 import {PaymentListModal} from "../pages/payment/modals/listModal";
+import {ChangePassWord} from "../pages/changePassWord/changePassWord";
+import {Unrent} from "../pages/mine/unrent/unrent";
+import {AboutUs} from "../pages/mine/aboutUs/aboutUs";
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import {PaymentListModal} from "../pages/payment/modals/listModal";
     MainTabs,
     MainIndex,
     LoginPage,
+    ChangePassWord,
     RegisterPage,
     AnnounceList,
     AnnounceDetail,
@@ -79,7 +82,9 @@ import {PaymentListModal} from "../pages/payment/modals/listModal";
     Settings,
     MyMsg,
     MyContract,
-    MyInfo
+    MyInfo,
+    Unrent,
+    AboutUs
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -94,6 +99,7 @@ import {PaymentListModal} from "../pages/payment/modals/listModal";
     MainTabs,
     MainIndex,
     LoginPage,
+    ChangePassWord,
     RegisterPage,
     AnnounceList,
     AnnounceDetail,
@@ -132,13 +138,14 @@ import {PaymentListModal} from "../pages/payment/modals/listModal";
     Settings,
     MyMsg,
     MyContract,
-    MyInfo
+    MyInfo,
+    Unrent,
+    AboutUs
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HirerHttpService,
-    Utils,
-    CookieService
+    Utils
   ]
 })
 export class AppModule {

@@ -1,9 +1,10 @@
 myMsg {
   .content-ios{
-    background-color: #f8f8f8;
+    background-color: #eee;
     .list-ios {
       padding: 1rem;
       .item-ios {
+        color: #4d4d4d;
         border: 0.55px #eee solid;
         border-radius: 0.6rem;
         margin-bottom: 1rem;
@@ -15,11 +16,13 @@ myMsg {
         }
         p {
           margin-bottom: 1rem;
+          color: #4d4d4d;
           &:last-child:before {
             content: '';
-            background: #8c8c8c;
+            background-image: url("../assets/img/clock.png");
+            background-size: 1.6rem 1.6rem;
+            background-repeat: no-repeat;
             padding-left: 2rem;
-            margin-right: 0.4rem;
             width: 2rem;
             height: 2rem;
           }

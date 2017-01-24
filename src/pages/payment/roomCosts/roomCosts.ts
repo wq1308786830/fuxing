@@ -2,13 +2,9 @@
  * Created by russell on 2016/12/12.
  */
 import {Component, OnInit} from "@angular/core";
-import {NavController, ViewController, NavParams, Platform, LoadingController} from "ionic-angular";
-import {
-  GarDenStyleBean, HousePayFormBean, HouseSimpleBean,
-  HouseToRentInfo, MakerInfo, MoneyFeeInfo, PayBillInfo
-} from "../../../beans/beans";
+import {NavController, NavParams, LoadingController} from "ionic-angular";
+import {MakerInfo, MoneyFeeInfo, PayBillInfo} from "../../../beans/beans";
 import {HirerHttpService} from "../../../services/hirer-http-service";
-import {PaymentListModal} from "../modals/listModal";
 import {Utils} from "../../../services/utils";
 
 declare var HNBridge;
@@ -40,8 +36,8 @@ export class RoomCosts implements OnInit {
               public loadingCtrl: LoadingController,
               public httpService: HirerHttpService) {
     this.feeInfo = new MoneyFeeInfo;
-    this.userInfo = this.httpService.accountInfo;
     this.payBillInfo = new PayBillInfo;
+    this.userInfo = this.httpService.accountInfo;
     this.idList = '';
     this.formData = {
       paymoney: 0.0,
@@ -59,6 +55,11 @@ export class RoomCosts implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.httpService.accountInfo.houseid) {
+      this.navCtrl.pop();
+      this.util.showAlertMsg('您尚未租房，无法继续操作');
+      return;
+    }
     let loader = this.loadingCtrl.create({content: "加载中..."});
     loader.present();
     this.httpService.getPaymentInfo(RoomCosts.E_FEE_HOUSE).subscribe(data => {
@@ -87,7 +88,7 @@ export class RoomCosts implements OnInit {
         this.payBillInfo = data;
         HNBridge.payBySMK(this.payBillInfo.payparms, this.payBillInfo.paysign, (msg)=>{
           console.log("************: returnCode=" + msg.returnCode + ", returnMsg=" + msg.returnMsg);
-          if (msg.returnCode === 0) {
+          if (msg.returnCode === '00') {
             this.givePayResult(this.payBillInfo, true);
           } else {
             this.givePayResult(this.payBillInfo, false);
@@ -109,8 +110,8 @@ export class RoomCosts implements OnInit {
     });
   }
 
-  chooseChange(id: number) {
-    this.checkedItem(id);
+  chooseChange(id: number, choosed: boolean) {
+    this.checkedItem(id, choosed);
     this.formData.furnitures = this.idList;
     this.updateCost();
   }
@@ -121,19 +122,20 @@ export class RoomCosts implements OnInit {
         this.formData.paymoney = data;
       }
     }, err => {
-      this.util.showAlertMsg('计价失败，请重试');
+      this.util.showAlertMsg(err);
     });
   }
 
   /**
    * 操作idList（需要提交的id组合成一个字符串用逗号间隔）
    * @param id
+   * @param choosed
    */
-  checkedItem(id: number) {
+  checkedItem(id: number, choosed: boolean) {
 
-    if (this.idList.indexOf(id + ',') >= 0) {
+    if (this.idList.indexOf(id + ',') >= 0 && !choosed) {
       this.idList = this.idList.replace(new RegExp(id + ','), '');
-    } else {
+    } else if (this.idList.indexOf(id + ',') < 0 && choosed) {
       this.idList += id + ',';
 
     }

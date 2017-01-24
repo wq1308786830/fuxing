@@ -18,8 +18,8 @@
 			<ion-input type="password" placeholder="请输入密码" [(ngModel)]="user.password"></ion-input>
 		</ion-item>
 
-    <button ion-button block color="white" (click)="onClickLogin()">登录 </button>
+    <button [disabled]="!user.phoneNo || !user.password" ion-button block (click)="onClickLogin()">登录 </button>
 
-    <button ion-button block color="white" (click)="onClickRegist()">注册 </button>
+    <button ion-button block clear style="color: gray;font-size: 1.4rem" (click)="onClickRegist()">还没注册？</button>
 	</div>
 </ion-content>

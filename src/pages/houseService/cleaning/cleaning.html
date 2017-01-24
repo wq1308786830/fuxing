@@ -21,7 +21,7 @@
   <div [ngSwitch]="cleaning">
     <ion-list *ngSwitchCase="'cleaningForm'" class="repair-form" no-lines>
       <ion-item>
-        <ion-label floating>请输入服务内容</ion-label>
+        <ion-label stacked>服务内容</ion-label>
         <ion-textarea [(ngModel)]="formDetail.cleanContent"></ion-textarea>
       </ion-item>
       <ion-item class="with-arrow" (click)="changePhoneNo()">
@@ -38,52 +38,62 @@
         </ion-label>
         <ion-input [(ngModel)]="formDetail.masterName" readonly></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item class="with-arrow">
         <ion-label>
           <img src="assets/img/xtb_3.png">
           维修地址
         </ion-label>
-        <ion-input [(ngModel)]="formDetail.masterAddress" readonly></ion-input>
+        <ion-input *ngIf="httpService.accountInfo.houseid" [(ngModel)]="formDetail.masterAddress" readonly></ion-input>
+        <ion-input *ngIf="!httpService.accountInfo.houseid" value="未租房" readonly></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>
           <img src="assets/img/xtb_4.png">
           服务时间
         </ion-label>
-        <ion-datetime displayFormat="YYYY年MM月DD日 hh:mm" [(ngModel)]="formDetail.changeDate" doneText="完成"
-                      cancelText="取消"></ion-datetime>
+        <ion-datetime displayFormat="YYYY年MM月DD日 HH:mm" [(ngModel)]="formDetail.changeDate" doneText="完成"
+                      cancelText="取消" min="2017-01-01" max="2037-01-01"></ion-datetime>
       </ion-item>
       <ion-item class="sp-label">
         <label>
-          <input type="radio" [(ngModel)]="formDetail.masterAtHome" value="true">业主在家</label>
+          <input type="radio" [(ngModel)]="formDetail.masterAtHome" [value]="true">业主在家</label>
         <label>
-          <input type="radio" [(ngModel)]="formDetail.masterAtHome" value="false">业主不在家</label>
+          <input type="radio" [(ngModel)]="formDetail.masterAtHome" [value]="false">业主不在家</label>
       </ion-item>
 
-      <ion-item>
-        <ion-label floating>我想说</ion-label>
+      <ion-item stacked>
+        <ion-label>我想说</ion-label>
         <ion-textarea [(ngModel)]="formDetail.comment"></ion-textarea>
       </ion-item>
 
       <div class="single-row">
-        <button ion-button (click)="onClickSubmit()">提交</button>
+        <button *ngIf="httpService.accountInfo.houseid" ion-button (click)="onClickSubmit()">提交</button>
+        <button *ngIf="!httpService.accountInfo.houseid" ion-button disabled>提交</button>
       </div>
     </ion-list>
 
 
     <ion-list class="faultRepairList" *ngSwitchCase="'cleaningList'" no-lines>
-      <ion-item *ngFor="let item of cleanList">
-        <div>
-          <p><span>服务时间:</span><span>{{item.needcleantime}}</span></p>
-          <p><span>服务内容:</span><span>{{item.cleanmsg}}</span></p>
-          <div class="bottom-bar">
-            <span>服务价格：{{item.moneyinfo}}</span>
-            <button *ngIf="!item.moneyed && !item.scored" ion-button (click)="goPayMoney(item)">待付费</button>
-            <ion-icon *ngIf="item.moneyed && !item.scored" color="green" name="create-outline" (click)="goRating(item)"></ion-icon>
-            <ion-icon *ngIf="item.moneyed && item.scored" color="green" name="checkmark"></ion-icon>
+      <div *ngIf="cleanList.length">
+        <ion-item *ngFor="let item of cleanList">
+          <div>
+            <img *ngIf="!item.cleaned" src="assets/img/waitdeal.png">
+            <img *ngIf="item.cleaned" src="assets/img/dealt.png">
+            <p><span>服务时间:</span><span>{{item.needcleantime}}</span></p>
+            <p><span>服务内容:</span><span>{{item.cleanmsg}}</span></p>
+            <div class="bottom-bar">
+              <span>服务价格：{{item.moneyinfo}}</span>
+              <button *ngIf="!item.moneyed && !item.scored && !item.cleaned" ion-button>待处理</button>
+              <button *ngIf="!item.moneyed && !item.scored && item.cleaned" ion-button (click)="goPayMoney(item)">待付费</button>
+              <ion-icon *ngIf="item.moneyed && !item.scored && item.cleaned" color="green" name="create-outline" (click)="goRating(item)"></ion-icon>
+              <ion-icon *ngIf="item.moneyed && item.scored && item.cleaned" color="green" name="checkmark"></ion-icon>
+            </div>
           </div>
-        </div>
-      </ion-item>
+        </ion-item>
+      </div>
+      <div class="nodata-tip" *ngIf="!cleanList.length">
+        没有数据~
+      </div>
     </ion-list>
   </div>
 

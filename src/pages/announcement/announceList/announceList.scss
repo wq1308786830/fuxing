@@ -1,4 +1,7 @@
 announceList {
+  ion-content {
+    background-color: #eee!important;
+  }
   .content-ios{
     background-color: #f8f8f8;
     .list-ios {
@@ -19,11 +22,13 @@ announceList {
         }
         p {
           margin-bottom: 1rem;
-          &:last-child:before {
+          color: #4d4d4d;
+          &:last-child::before {
             content: '';
-            background: #8c8c8c;
+            background-image: url("../assets/img/clock.png");
+            background-size: 1.6rem 1.6rem;
+            background-repeat: no-repeat;
             padding-left: 2rem;
-            margin-right: 0.4rem;
             width: 2rem;
             height: 2rem;
           }
@@ -33,7 +38,6 @@ announceList {
           height: 10rem;
           margin-bottom: 1rem;
         }
-
         .item-inner {
           border: none;
         }

@@ -9,14 +9,13 @@
 <ion-content>
 
   <ion-slides [options]="mySlideOptions">
-    <ion-slide style="background-color: green">
-      <h2>Slide 1</h2>
+    <ion-slide style="background: url('assets/img/slide1.jpg')">
     </ion-slide>
-    <ion-slide style="background-color: blue">
-      <h2>Slide 2</h2>
+
+    <ion-slide style="background: url('assets/img/slide2.jpg')">
     </ion-slide>
-    <ion-slide style="background-color: red">
-      <h2>Slide 3</h2>
+
+    <ion-slide style="background: url('assets/img/slide3.jpg')">
     </ion-slide>
   </ion-slides>
 
@@ -47,10 +46,13 @@
       </dl></div>
   </div>
 
-  <footer>
+  <footer *ngIf="houseList.length">
     <button ion-button (click)="modalProtocal()" *ngIf="!httpService.accountInfo.contractid">租赁签约</button>
     <button ion-button (click)="goRentPage()" *ngIf="httpService.accountInfo.contractid">租赁缴费</button>
     <button ion-button (click)="modalBooking()">预约看房</button>
+  </footer>
+  <footer *ngIf="!houseList.length">
+    <button ion-button disabled>已租罄</button>
   </footer>
 
 </ion-content>

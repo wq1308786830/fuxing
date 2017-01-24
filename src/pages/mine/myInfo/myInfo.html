@@ -7,14 +7,17 @@
 <ion-content>
 
   <ion-list no-lines>
+    <!--<ion-item><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1485336050&di=ba8a20a319bc5c685a7779c195ace14a&imgtype=jpg&er=1&src=http%3A%2F%2Fimg10.3lian.com%2Fshow2014%2F4%2F69%2F8.jpg" tappable (click)="onPickImg(0)"></ion-item>-->
     <ion-item><img [src]="imageUri0" tappable (click)="onPickImg(0)"></ion-item>
     <ion-item>姓名：{{accountInfo.name}}</ion-item>
     <ion-item>联系电话：{{accountInfo.mobiPhone}}</ion-item>
-    <ion-item>租住地址：{{accountInfo.houseid}}</ion-item>
+    <ion-item *ngIf="httpService.accountInfo.houseid">租住地址：{{accountInfo.housename}}</ion-item>
+    <ion-item *ngIf="!httpService.accountInfo.houseid">租住地址：未租房</ion-item>
   </ion-list>
 
   <div class="single-row">
-    <button ion-button (click)="onClickSubmit()">申请退租</button>
+    <button *ngIf="httpService.accountInfo.houseid" ion-button (click)="onClickSubmit()">申请退租</button>
+    <button *ngIf="!httpService.accountInfo.houseid" ion-button disabled>申请退租</button>
   </div>
 
 </ion-content>

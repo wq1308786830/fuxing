@@ -10,24 +10,28 @@
 
   <ion-list>
     <ion-item>
-      <ion-label><span>房间:</span><span>{{feeInfo.housename}}</span></ion-label>
+      <ion-label><span>房间：</span><span>{{feeInfo.housename}}</span></ion-label>
     </ion-item>
     <ion-item>
-      <span>房租价格:</span><span>{{feeInfo.unit_price}}{{feeInfo.unit_name}}</span>
+      <span>房租价格：</span><span>{{feeInfo.unit_price}}{{feeInfo.unit_name}}</span>
       <p class="redtip" *ngIf="0">此房型房租已从{{changeDate}}开始调整为{{newMoneyPerMonth}}元/月</p>
     </ion-item>
     <ion-item>
-      <span>已缴纳到:</span><span>2016年12月</span>
+      <span>已缴纳到：</span><span>2016年12月</span>
     </ion-item>
     <ion-item>
-      <span>房间标配项:</span><span><code *ngFor="let itemPre of feeInfo.standarFurnitrues">{{itemPre.name}}、</code>&nbsp;</span>
+      <span>房间标配项：</span><span><code *ngFor="let itemPre of feeInfo.standarFurnitrues">{{itemPre.name}}、</code></span>
     </ion-item>
     <ion-item class="checkbox">
-      <span>房间选配项:</span><span><label *ngFor="let item of feeInfo.optionalFurnitrues">
-        <input type="checkbox" [(ngModel)]="item.choosed" (ngModelChange)="chooseChange(item.id)">{{item.name}}({{item.rentPrice}}元/月)
+      <span>房间选配项：</span><span><label *ngFor="let item of feeInfo.optionalFurnitrues">
+        <input type="checkbox" [(ngModel)]="item.choosed" (ngModelChange)="chooseChange(item.id, item.choosed)">{{item.name}}({{item.rentPrice}}元/月)
       </label>&nbsp;</span>
     </ion-item>
     <ion-item>
+      <ion-label>
+        <span>缴费时长：</span>
+        <span>
+
       <ion-select [(ngModel)]="monthCount" (ionChange)="onSelectMonth()"
                   interface="action-sheet" cancelText="取消" okText="确定" placeholder="请选择时长">
         <ion-option value="1">1个月</ion-option>
@@ -37,9 +41,11 @@
         <ion-option value="12">12个月</ion-option>
         <ion-option value="24">24个月</ion-option>
       </ion-select>
+      </span>
+      </ion-label>
     </ion-item>
     <ion-item class="pay-money">
-      <span>缴纳金额:</span><span><span>{{formData.paymoney}}</span><span>元</span></span>
+      <span>缴纳金额：</span><span><span>{{formData.paymoney}}</span><span>元</span></span>
     </ion-item>
     <div class="single-row">
       <button ion-button (click)="onClickSubmit()">支付</button>

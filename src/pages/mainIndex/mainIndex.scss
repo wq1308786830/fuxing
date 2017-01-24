@@ -5,10 +5,13 @@ hirer-main {
     }
     ion-buttons {
       img {
-        height: 2.4rem;
-        width: 2.4rem;
+        height: 2.8rem;
+        width: 2.8rem;
       }
     }
+  }
+  ion-content {
+    background-color: #eee!important;
   }
 
   ion-slides {
@@ -25,7 +28,8 @@ hirer-main {
   }
 
   ion-grid {
-    border-bottom: 0.55px #eee solid;
+    border-bottom: 0.55px #c8c7cc solid;
+    background-color: #fff;
   }
 
   .item-box {
@@ -44,7 +48,7 @@ hirer-main {
 
   ion-item {
     .input-wrapper {
-      border-bottom: 0.55px #eee solid;
+      border-bottom: 0.55px #c8c7cc solid;
     }
   }
 
@@ -52,8 +56,10 @@ hirer-main {
     & > div {
       display: flex;
       ion-thumbnail {
-        min-width: 7.6rem;
-        min-height: 7.6rem;
+        min-width: 8.6rem;
+        img {
+          min-width: 7.6rem;
+        }
       }
       div {
         width: 100%;
@@ -75,9 +81,9 @@ hirer-main {
   }
 
   .sup-red {
-    width: 4px;
-    height: 4px;
-    border-radius: 2px;
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
     background-color: red;
     vertical-align: super;
     margin-left: -6px;

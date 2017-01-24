@@ -33,7 +33,6 @@ mailReceiveApply {
       &:last-of-type {
         input {
           font-size: 1.4rem;
-          margin-left: 0;
         }
       }
 
@@ -58,6 +57,11 @@ mailReceiveApply {
         }
         .label-ios {
           font-size: 1.4rem;
+        }
+      }
+      &:nth-of-type(5) {
+        .input-wrapper:after {
+          color: #fff;
         }
       }
     }

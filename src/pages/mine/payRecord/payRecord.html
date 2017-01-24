@@ -19,38 +19,63 @@
   <div [ngSwitch]="payRecord">
 
     <ion-list *ngSwitchCase="'electricRecord'" no-lines>
-      <ion-item *ngFor="let item of feeList">
-        <h2 item-left>{{item.create_time}}</h2>
-        <span item-right>{{item.money}}元</span>
-      </ion-item>
+      <div *ngIf="feeList.length">
+        <ion-item *ngFor="let item of feeList">
+          <h2 item-left>{{item.create_time}}</h2>
+          <span item-right>{{item.money}}元</span>
+        </ion-item>
+      </div>
+      <div class="nodata-tip" *ngIf="!feeList.length">
+        没有数据~
+      </div>
     </ion-list>
 
     <ion-list *ngSwitchCase="'waterRecord'" no-lines>
-      <ion-item *ngFor="let item of feeList">
-        <h2 item-left>{{item.create_time}}</h2>
-        <span item-right>{{item.money}}元</span>
-      </ion-item>
+      <div *ngIf="feeList.length">
+        <ion-item *ngFor="let item of feeList">
+          <h2 item-left>{{item.create_time}}</h2>
+          <span item-right>{{item.money}}元</span>
+        </ion-item>
+      </div>
+      <div class="nodata-tip" *ngIf="!feeList.length">
+        没有数据~
+      </div>
     </ion-list>
 
     <ion-list *ngSwitchCase="'netRecord'" no-lines>
-      <ion-item *ngFor="let item of feeList">
-        <h2 item-left>{{item.create_time}}</h2>
-        <span item-right>{{item.money}}元</span>
-      </ion-item>
+      <div *ngIf="feeList.length">
+        <ion-item *ngFor="let item of feeList">
+          <h2 item-left>{{item.create_time}}</h2>
+          <span item-right>{{item.money}}元</span>
+        </ion-item>
+      </div>
+      <div class="nodata-tip" *ngIf="!feeList.length">
+        没有数据~
+      </div>
     </ion-list>
 
     <ion-list *ngSwitchCase="'propertyRecord'" no-lines>
-      <ion-item *ngFor="let item of feeList">
-        <h2 item-left>{{item.create_time}}</h2>
-        <span item-right>{{item.money}}元</span>
-      </ion-item>
+      <div *ngIf="feeList.length">
+        <ion-item *ngFor="let item of feeList">
+          <h2 item-left>{{item.create_time}}</h2>
+          <span item-right>{{item.money}}元</span>
+        </ion-item>
+      </div>
+      <div class="nodata-tip" *ngIf="!feeList.length">
+        没有数据~
+      </div>
     </ion-list>
 
     <ion-list *ngSwitchCase="'roomRecord'" no-lines>
-      <ion-item *ngFor="let item of feeList">
-        <h2 item-left>{{item.create_time}}</h2>
-        <span item-right>{{item.money}}元</span>
-      </ion-item>
+      <div *ngIf="feeList.length">
+        <ion-item *ngFor="let item of feeList">
+          <h2 item-left>{{item.create_time}}</h2>
+          <span item-right>{{item.money}}元</span>
+        </ion-item>
+      </div>
+      <div class="nodata-tip" *ngIf="!feeList.length">
+        没有数据~
+      </div>
     </ion-list>
   </div>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">

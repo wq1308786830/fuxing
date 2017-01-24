@@ -38,7 +38,7 @@ export class RegisterPage implements OnInit {
       return false;
     }
 
-    if (!this.user.phoneNo) {
+    if (!this.user.phoneNo && !/^1[0-9]{10}$/.test(this.user.phoneNo)) {
       this.util.showAlertMsg('请输入手机号.');
       return false;
     }
@@ -64,22 +64,17 @@ export class RegisterPage implements OnInit {
 
     this.httpService.regist(this.user).subscribe(info => {
 
-        localStorage.setItem("phoneNo", this.user.phoneNo);
-        // this._cookieService.put('JSESSIONID', 'e7mmdb6vupvkzjqig2an2fua');
-        this.httpService.token = info;
-        this.httpService.isLogin = true;
-        this.navCtrl.pop();
+      localStorage.setItem("phoneNo", this.user.phoneNo);
+      // this._cookieService.put('JSESSIONID', 'e7mmdb6vupvkzjqig2an2fua');
+      this.httpService.token = info;
+      this.httpService.isLogin = true;
+      this.navCtrl.pop();
 
       loader.dismiss();
 
     }, error => {
-
       loader.dismiss();
-      if (error === "ErrorPassword") {
-        this.util.showAlertMsg('您输入的账号和密码不匹配，请重新输入.');
-      } else {
-        this.util.showAlertMsg('网络连接出现错误，请稍后再试.');
-      }
+      this.util.showAlertMsg(error);
     });
 
   }

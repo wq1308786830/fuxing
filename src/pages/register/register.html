@@ -26,7 +26,7 @@
       <ion-input type="password" placeholder="请再次输入密码" [(ngModel)]="password2"></ion-input>
     </ion-item>
 
-    <button ion-button block color="white" (click)="onClickRegist()">注册</button>
+    <button [disabled]="!user.username || !user.phoneNo || !user.password || !password2" ion-button block color="white" (click)="onClickRegist()">注册</button>
 	</div>
 
 

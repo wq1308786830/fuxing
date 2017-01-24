@@ -21,7 +21,7 @@
   <div [ngSwitch]="faultRepair">
     <ion-list *ngSwitchCase="'faultRepairForm'" no-lines class="repair-form">
       <ion-item>
-        <ion-label floating>请输入报修内容</ion-label>
+        <ion-label stacked>报修内容</ion-label>
         <ion-textarea [(ngModel)]="formDetail.repairContent"></ion-textarea>
       </ion-item>
       <ion-item class="with-arrow" (click)="changePhoneNo()">
@@ -39,29 +39,30 @@
         <ion-input [(ngModel)]="formDetail.masterName" readonly></ion-input>
         <input type="hidden" [(ngModel)]="formDetail.masterSex">
       </ion-item>
-      <ion-item>
+      <ion-item class="with-arrow">
         <ion-label>
           <img src="assets/img/xtb_3.png">
           维修地址
         </ion-label>
-        <ion-input [(ngModel)]="formDetail.masterAddress"></ion-input>
+        <ion-input *ngIf="httpService.accountInfo.houseid" [(ngModel)]="formDetail.masterAddress" readonly></ion-input>
+        <ion-input *ngIf="!httpService.accountInfo.houseid" value="未租房" readonly></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>
           <img src="assets/img/xtb_4.png">
           报修时间
         </ion-label>
-        <ion-datetime displayFormat="YYYY年MM月DD日 hh:mm" [(ngModel)]="formDetail.changeDate" doneText="完成"
-                      cancelText="取消"></ion-datetime>
+        <ion-datetime displayFormat="YYYY年MM月DD日 HH:mm" [(ngModel)]="formDetail.changeDate" doneText="完成"
+                      cancelText="取消" min="2017-01-01" max="2037-01-01"></ion-datetime>
       </ion-item>
       <ion-item class="sp-label">
         <label>
-          <input type="radio" [(ngModel)]="formDetail.masterAtHome" value="true">业主在家</label>
+          <input type="radio" [(ngModel)]="formDetail.masterAtHome" [value]="true">业主在家</label>
         <label>
-          <input type="radio" [(ngModel)]="formDetail.masterAtHome" value="false">业主不在家</label>
+          <input type="radio" [(ngModel)]="formDetail.masterAtHome" [value]="false">业主不在家</label>
       </ion-item>
       <div class="img-container">
-        <ion-label>照片上传</ion-label>
+        <ion-label>晒个图，有图有真相</ion-label>
         <ion-grid>
           <ion-row>
             <ion-col width-33><img [src]="imageUri0" tappable (click)="onPickImg(0)"></ion-col>
@@ -70,27 +71,38 @@
       </div>
 
       <div class="single-row">
-        <button ion-button (click)="onClickSubmit()">提交</button>
+        <button *ngIf="httpService.accountInfo.houseid" ion-button (click)="onClickSubmit()">提交</button>
+        <button *ngIf="!httpService.accountInfo.houseid" ion-button disabled>提交</button>
       </div>
     </ion-list>
 
 
     <ion-list class="faultRepairList" *ngSwitchCase="'faultRepairList'" no-lines>
-      <ion-item *ngFor="let item of repairList">
-        <div>
-          <p><span>维修时间:</span><span>{{item.needrepairtime}}</span></p>
-          <p><span>维修内容:</span><span>{{item.repairmsg}}</span></p>
-          <div class="bottom-bar">
-            <span>维修价格：{{item.moneyinfo}}</span>
-            <button *ngIf="!item.moneyed && !item.scored" ion-button (click)="goPayMoney(item)">待付费</button>
-            <ion-icon *ngIf="item.moneyed && !item.scored" color="green" name="create-outline" (click)="goRating(item)"></ion-icon>
-            <ion-icon *ngIf="item.moneyed && item.scored" color="green" name="checkmark"></ion-icon>
+      <div *ngIf="repairList.length">
+        <ion-item *ngFor="let item of repairList">
+          <div>
+            <img *ngIf="!item.reparied" src="assets/img/waitdeal.png">
+            <img *ngIf="item.reparied" src="assets/img/dealt.png">
+            <p><span>维修时间:</span><span>{{item.needrepairtime}}</span></p>
+            <p><span>维修内容:</span><span>{{item.repairmsg}}</span></p>
+            <div class="bottom-bar">
+              <span>维修价格：{{item.moneyinfo}}</span>
+              <button *ngIf="!item.moneyed && !item.scored && !item.reparied" ion-button>待处理</button>
+              <button *ngIf="!item.moneyed && !item.scored && item.reparied" ion-button (click)="goPayMoney(item)">待付费</button>
+              <ion-icon *ngIf="item.moneyed && !item.scored && item.reparied" color="green" name="create-outline" (click)="goRating(item)"></ion-icon>
+              <ion-icon *ngIf="item.moneyed && item.scored && item.reparied" color="green" name="checkmark"></ion-icon>
+            </div>
           </div>
-        </div>
-      </ion-item>
+        </ion-item>
+      </div>
+
+      <div class="nodata-tip" *ngIf="!repairList.length">
+        没有数据~
+      </div>
+
     </ion-list>
   </div>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    <ion-infinite-scroll-content loadingSpinner="bubbles"></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

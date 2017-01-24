@@ -2,8 +2,8 @@
  * Created by russell on 2016/12/12.
  */
 import {Component, OnInit} from "@angular/core";
-import {NavController, ViewController, NavParams, Platform, LoadingController} from "ionic-angular";
-import {GarDenStyleBean, HouseSimpleBean, HouseToRentInfo, HousePayFormBean, PayBillInfo} from "../../../beans/beans";
+import {NavController, NavParams, LoadingController} from "ionic-angular";
+import {GarDenStyleBean, HouseSimpleBean, HouseToRentInfo, PayBillInfo} from "../../../beans/beans";
 import {HirerHttpService} from "../../../services/hirer-http-service";
 import {PaymentListModal} from "../../payment/modals/listModal";
 import {Utils} from "../../../services/utils";
@@ -59,6 +59,7 @@ export class RentCosts implements OnInit {
       if (data.length) {
         this.houseList = data;
         this.getHouseDetail(this.houseList[0].id);
+        this.updateCost();
       }
     }, err => {
       loader.dismiss();
@@ -95,7 +96,7 @@ export class RentCosts implements OnInit {
         this.payBillInfo = data;
         HNBridge.payBySMK(this.payBillInfo.payparms, this.payBillInfo.paysign, (msg)=>{
           console.log("************: returnCode=" + msg.returnCode + ", returnMsg=" + msg.returnMsg);
-          if (msg.returnCode === 0) {
+          if (msg.returnCode === '00') {
             this.updatePaymentState(true);
           } else {
             this.updatePaymentState(false);
@@ -108,22 +109,22 @@ export class RentCosts implements OnInit {
     });
   }
 
-  chooseChange(id: number) {
-    this.checkedItem(id);
+  chooseChange(id: number, choosed: boolean) {
+    this.checkedItem(id, choosed);
     this.updateCost();
   }
 
   updateCost() {
     //判断有没有交过押金
-    let loader = this.loadingCtrl.create({content: "加载中..."});
-    loader.present();
+    // let loader = this.loadingCtrl.create({content: "加载中..."});
+    // loader.present();
     this.httpService.getRentMoney(this.houseDetail.id, this.idList, this.monthCount).subscribe(data => {
-      loader.dismiss();
+      // loader.dismiss();
       if (data) {
         this.allMoney = data;
       }
     }, err => {
-      loader.dismiss();
+      // loader.dismiss();
     });
   }
 
@@ -141,11 +142,12 @@ export class RentCosts implements OnInit {
   /**
    * 操作idList（需要提交的id组合成一个字符串用逗号间隔）
    * @param id
+   * @param choosed
    */
-  checkedItem(id: number) {
-    if (this.idList.indexOf(id + ',') >= 0) {
+  checkedItem(id: number, choosed: boolean) {
+    if (this.idList.indexOf(id + ',') >= 0 && !choosed) {
       this.idList = this.idList.replace(new RegExp(id + ','), '');
-    } else {
+    } else if (this.idList.indexOf(id + ',') < 0 && choosed) {
       this.idList += id + ',';
     }
   }

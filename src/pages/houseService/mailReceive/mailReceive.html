@@ -1,13 +1,13 @@
 <ion-header>
   <ion-navbar>
-      <ion-title>
-        邮件代收
-      </ion-title>
-      <ion-buttons end>
-        <button ion-button color="black" (click)="addMailReceive()">
-          <ion-icon name="add"></ion-icon>
-        </button>
-      </ion-buttons>
+    <ion-title>
+      邮件代收
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button color="black" (click)="addMailReceive()">
+        <ion-icon name="md-add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -25,43 +25,35 @@
 
   <div [ngSwitch]="receiveTag">
 
-    <ion-list *ngSwitchCase="'notReceived'" no-lines>
-      <ion-item>
-        <ion-grid>
-          <ion-row>
-            <ion-col>快递单号</ion-col>
-            <ion-col>快递公司</ion-col>
-            <ion-col>是否送达</ion-col>
-          </ion-row>
-
-          <ion-row *ngFor="let itemNot of notReceivedList">
-            <ion-col>{{itemNot.mailno}}</ion-col>
-            <ion-col>{{itemNot.mailcom}}</ion-col>
-            <ion-col *ngIf="itemNot.arrived">已到</ion-col>
-            <ion-col *ngIf="!itemNot.arrived">未到</ion-col>
-          </ion-row>
-
-        </ion-grid>
-      </ion-item>
+    <ion-list class="faultRepairList" *ngSwitchCase="'notReceived'" no-lines>
+      <div *ngIf="notReceivedList.length">
+        <ion-item *ngFor="let itemNot of notReceivedList">
+          <div>
+            <img class="arrivecar" *ngIf="!itemNot.arrived" src="assets/img/waitarrive.png">
+            <img *ngIf="itemNot.arrived" src="assets/img/arrived.png">
+            <p><span>快递单号:</span><span>{{itemNot.mailno}}</span></p>
+            <p><span>快递公司:</span><span>{{itemNot.mailcom}}</span></p>
+          </div>
+        </ion-item>
+      </div>
+      <div class="nodata-tip" *ngIf="!notReceivedList.length">
+        没有数据~
+      </div>
     </ion-list>
 
-    <ion-list *ngSwitchCase="'received'" no-lines>
-      <ion-item>
-        <ion-grid>
-          <ion-row>
-            <ion-col>快递单号</ion-col>
-            <ion-col>快递公司</ion-col>
-            <ion-col>签收时间</ion-col>
-          </ion-row>
-
-          <ion-row *ngFor="let item of receivedList">
-            <ion-col>{{item.mailno}}</ion-col>
-            <ion-col>{{item.mailcom}}</ion-col>
-            <ion-col>{{item.finishtime}}</ion-col>
-          </ion-row>
-
-        </ion-grid>
-      </ion-item>
+    <ion-list class="faultRepairList" *ngSwitchCase="'received'" no-lines>
+      <div *ngIf="receivedList.length">
+        <ion-item *ngFor="let item of receivedList">
+          <div>
+            <p><span>快递单号:</span><span>{{item.mailno}}</span></p>
+            <p><span>快递公司:</span><span>{{item.mailcom}}</span></p>
+            <p><span>签收时间:</span><span>{{item.finishtime}}</span></p>
+          </div>
+        </ion-item>
+      </div>
+      <div class="nodata-tip" *ngIf="!receivedList.length">
+        没有数据~
+      </div>
     </ion-list>
 
   </div>

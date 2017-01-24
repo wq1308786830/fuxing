@@ -42,7 +42,7 @@ export class BookingModal {
       this.dismiss();
       this.util.showAlertMsg("恭喜您，预约成功");
     }, err => {
-      this.util.showAlertMsg("抱歉，预约失败");
+      this.util.showAlertMsg(err);
     });
 
   }

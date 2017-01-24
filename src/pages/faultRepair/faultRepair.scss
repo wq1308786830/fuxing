@@ -69,9 +69,10 @@ faultRepair {
       }
       ion-textarea {
         font-size: 1.4rem;
-        border-bottom: 0.55px #eee solid;
+        border: 0.55px #eee solid;
         .text-input {
           height: 4 * 1.8rem;
+          padding-left: 1rem;
         }
       }
 
@@ -115,6 +116,7 @@ faultRepair {
       }
 
       &.sp-label {
+        border-top: 0.55px #eee solid;
         .label-ios {
           width: 100%;
           flex: 1 !important;
@@ -123,6 +125,16 @@ faultRepair {
           label {
             flex: 1;
           }
+        }
+      }
+      &:nth-of-type(4) {
+        .input-wrapper:after {
+          color: #fff;
+        }
+      }
+      &:last-of-type {
+        ion-label {
+          margin-left: 8rem;
         }
       }
     }
@@ -149,6 +161,11 @@ faultRepair {
   .faultRepairList {
     ion-item {
       margin-bottom: 1rem !important;
+      img:first-of-type {
+        position: absolute;
+        width: 5rem;
+        right: 2rem;
+      }
       p {
         margin-bottom: 1rem !important;
         span {
@@ -168,7 +185,7 @@ faultRepair {
         font-size: 1.3rem;
         line-height: 2.6;
         color: gray;
-        margin-top: 1rem;
+        margin-top: 2rem;
         margin-bottom: -0.4rem;
         border-top: 0.55px #eee dashed;
         display: flex;
@@ -182,5 +199,8 @@ faultRepair {
   }
   .label-ios + ion-input .text-input {
     padding-right: 0;
+  }
+  .label-ios[stacked] {
+    font-size: 1.4rem;
   }
 }

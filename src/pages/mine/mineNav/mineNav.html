@@ -8,10 +8,11 @@
   <ion-list>
     <ion-item (click)="goItem(1)">
       <ion-thumbnail item-left (click)="uploadThumbnail()">
-        <img src="img/thumbnail-totoro.png">
+        <img [src]="httpService.accountInfo.idCardImg2">
       </ion-thumbnail>
       <h2>{{accountInfo.name}}<span>{{accountInfo.mobiPhone}}</span></h2>
-      <p><ion-icon name="home"></ion-icon>{{accountInfo.houseid}}</p>
+      <p *ngIf="httpService.accountInfo.houseid"><img src="assets/img/xtb_3b.png">{{accountInfo.housename}}</p>
+      <p *ngIf="!httpService.accountInfo.houseid"><img src="assets/img/xtb_3b.png">未租房</p>
       <ion-icon name="arrow-forward" item-right></ion-icon>
     </ion-item>
 

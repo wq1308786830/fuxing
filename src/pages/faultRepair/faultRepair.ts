@@ -3,7 +3,7 @@
  */
 import {Component, OnInit} from "@angular/core";
 import {Camera, Transfer} from "ionic-native";
-import {ModalController, LoadingController, NavParams} from "ionic-angular";
+import {ModalController, LoadingController, NavParams, Platform} from "ionic-angular";
 import {RatingModal} from "../modals/ratingModal";
 import {ItemModal} from "../modals/itemModal";
 import {HirerHttpService} from "../../services/hirer-http-service";
@@ -19,6 +19,7 @@ export class FaultRepair implements OnInit {
   public isList: boolean;
   public formDetail: any;
   public imageUri0: string;
+  public now: Date;
   private currPage: number;
 
   private imagePath0: string;
@@ -30,11 +31,13 @@ export class FaultRepair implements OnInit {
   constructor(public modalCtrl: ModalController,
               public loadingCtrl: LoadingController,
               public params: NavParams,
+              public platform: Platform,
               public util: Utils,
               public httpService: HirerHttpService) {
     params.get('isList') ? this.faultRepair = 'faultRepairList' : this.faultRepair = 'faultRepairForm';
-    this.currPage = 0;
+    this.currPage = 1;
     this.repairList = [];
+    this.now = new Date();
 
     this.imageUri0 = FaultRepair.DEFAULT_IMAGE_URI;
     //todo:地址的数据
@@ -45,7 +48,7 @@ export class FaultRepair implements OnInit {
       masterPhoneNo: this.httpService.accountInfo.mobiPhone || '',
       masterAddress: '',
       changeDate: '2016-01-01T00:00:00+01:00',
-      masterAtHome: false
+      masterAtHome: true
     }
   }
 
@@ -104,42 +107,47 @@ export class FaultRepair implements OnInit {
 
   segmentChanged() {
 
-    switch (this.faultRepair) {
-      case 'faultRepairForm':
-        this.httpService.getRentHouseInfo(this.httpService.accountInfo.houseid.toString()).subscribe(data => {
-          this.formDetail.masterAddress = data.name;
-        }, err => {
-          this.util.showAlertMsg("获取房间地址失败");
-        });
-        break;
-      case 'faultRepairList':
-        let loader = this.loadingCtrl.create({content: "正在加载..."});
-        loader.present();
-        this.httpService.getRepairApplyList(0).subscribe(data => {
-          loader.dismiss();
-          if (data) {
-            this.repairList = data;
-          }
-        }, err => {
-          loader.dismiss();
-          this.util.showAlertMsg("获取数据失败，请重试");
-        });
-        break;
+    if (this.httpService.accountInfo.houseid) {
 
-      default:
-        break;
+      switch (this.faultRepair) {
+
+        case 'faultRepairForm':
+          this.httpService.getRentHouseInfo(this.httpService.accountInfo.houseid + '').subscribe(data => {
+            this.formDetail.masterAddress = data.name;
+          }, err => {
+            this.util.showAlertMsg("获取房间地址失败");
+          });
+          break;
+
+        case 'faultRepairList':
+          let loader = this.loadingCtrl.create({content: "正在加载..."});
+          loader.present();
+          this.httpService.getRepairApplyList(1).subscribe(data => {
+            loader.dismiss();
+            if (data) {
+              this.repairList = data;
+            }
+          }, err => {
+            loader.dismiss();
+            this.util.showAlertMsg("获取数据失败，请重试");
+          });
+          break;
+
+        default:
+          break;
+      }
     }
   }
 
   doInfinite(ev) {
     if (this.faultRepair === 'faultRepairList') {
       this.httpService.getRepairApplyList(++this.currPage).subscribe(data => {
-        ev.complete();
         if (data) {
           for (let item of data) {
             this.repairList.push(item);
           }
         }
+        ev.complete();
       }, err => {
         ev.complete();
       });
@@ -163,7 +171,7 @@ export class FaultRepair implements OnInit {
     let loader5 = this.loadingCtrl.create({content: "正在上传图片..."});
     loader5.present();
     fileTransfer.upload(encodeURI(imageFileUri),
-      "http://joyriver.xicp.net:9998/file/filesave.do",
+      "http://joyriver.xicp.net:9998/file/filesave.do?token="+this.httpService.token,
       options).then(res => {
       loader5.dismiss();
       let imageinfo = JSON.parse(res.response);
@@ -178,7 +186,7 @@ export class FaultRepair implements OnInit {
       }
     }, err => {
       loader5.dismiss();
-      this.util.showAlertMsg("上传失败请重试");
+      this.util.showAlertMsg(err);
       console.log(err);
     });
   }

@@ -1,11 +1,11 @@
 /**
  * Created by russell on 2016/12/9.
  */
-import {Component, ViewChild} from "@angular/core";
+import {Component} from "@angular/core";
 import {MainIndex} from "../mainIndex/mainIndex";
 import {AnnounceList} from "../announcement/announceList/announceList";
 import {MineNav} from "../mine/mineNav/mineNav";
-import {Tabs, NavController} from "ionic-angular";
+import {NavController} from "ionic-angular";
 import {LoginPage} from "../login/login";
 import {HirerHttpService} from "../../services/hirer-http-service";
 @Component({
@@ -13,7 +13,6 @@ import {HirerHttpService} from "../../services/hirer-http-service";
   templateUrl: 'mainTabs.html'
 })
 export class MainTabs {
-  @ViewChild('myTabs') tabRef: Tabs;
 
   public tabIndex: any;
   public tabNotice: any;
@@ -25,4 +24,9 @@ export class MainTabs {
     this.tabNotice = AnnounceList;
     this.tabMine = MineNav;
   }
+
+  beforeChange() {
+    this.navCtrl.push(LoginPage);
+  }
+
 }

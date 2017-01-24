@@ -22,12 +22,13 @@ export class Unrent {
       bankCardNo: '',
       bankCardName: '',
       bankCardUserName: '',
-      bankCardUserId: ''
+      bankCardUserId: '',
+      unrentdate: '2017-01-01'
     }
   }
 
   onClickSubmit() {
-    let loader = this.loadingCtrl.create({content: "登录中..."});
+    let loader = this.loadingCtrl.create({content: "提交中..."});
     loader.present();
     this.httpService.doUnrent(this.formData).subscribe(() => {
       loader.dismiss();

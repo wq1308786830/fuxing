@@ -9,6 +9,7 @@ import {WaterCosts} from "../waterCosts/waterCosts";
 import {ElectricCosts} from "../electricCosts/electricCosts";
 import {NetCosts} from "../netCosts/netCosts";
 import {RoomCosts} from "../roomCosts/roomCosts";
+import {Utils} from "../../../services/utils";
 
 @Component({
   selector: 'paymentHome',
@@ -27,35 +28,40 @@ export class PaymentHome {
   };
 
   constructor(public navCtrl: NavController,
+              public util: Utils,
               public httpService: HirerHttpService) {
 
   }
 
   onClickItem(pageIndex: number) {
 
-    switch (pageIndex) {
-      case 1:
-        this.navCtrl.push(PropertyCosts);
-        break;
+    if (this.httpService.accountInfo.houseid) {
+      switch (pageIndex) {
+        case 1:
+          this.navCtrl.push(PropertyCosts);
+          break;
 
-      case 2:
-        this.navCtrl.push(WaterCosts);
-        break;
+        case 2:
+          this.navCtrl.push(WaterCosts);
+          break;
 
-      case 3:
-        this.navCtrl.push(ElectricCosts);
-        break;
+        case 3:
+          this.navCtrl.push(ElectricCosts);
+          break;
 
-      case 4:
-        this.navCtrl.push(NetCosts);
-        break;
+        case 4:
+          this.navCtrl.push(NetCosts);
+          break;
 
-      case 5:
-        this.navCtrl.push(RoomCosts);
-        break;
+        case 5:
+          this.navCtrl.push(RoomCosts);
+          break;
 
-      default:
-        break;
+        default:
+          break;
+      }
+    } else {
+      this.util.showAlertMsg('您尚未租房，无法继续操作。');
     }
   }
 

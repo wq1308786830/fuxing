@@ -23,7 +23,7 @@ export class AnnounceList implements OnInit {
               public util: Utils,
               public httpService: HirerHttpService) {
     this.notices = [];
-    this.currPage = 0;
+    this.currPage = 1;
   }
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class AnnounceList implements OnInit {
   loadData() {
     let loader = this.loadingCtrl.create({content: "加载中..."});
     loader.present();
-    this.httpService.listNotice(0).subscribe(data => {
+    this.httpService.listNotice(1).subscribe(data => {
       loader.dismiss();
       if (data) {
         this.notices = data;
@@ -41,25 +41,24 @@ export class AnnounceList implements OnInit {
 
     }, err => {
       loader.dismiss();
-      this.util.showAlertMsg('加载失败请重试.');
+      this.util.showAlertMsg(err);
     });
   }
 
   doInfinite(ev) {
     this.httpService.listNotice(++this.currPage).subscribe(data => {
-      ev.complete();
       if (data) {
         for (let item of data) {
           this.notices.push(item);
         }
       }
+      ev.complete();
     }, err => {
       ev.complete();
-      this.util.showAlertMsg('加载失败请重试.');
     });
   }
 
-  onClickDetail() {
-    this.navCtrl.push(AnnounceDetail);
+  onClickDetail(data: NoticeInfo) {
+    this.navCtrl.push(AnnounceDetail, {data: data});
   }
 }

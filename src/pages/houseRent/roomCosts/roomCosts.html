@@ -20,36 +20,30 @@
       <span>已缴纳到:</span><span>2016年12月</span>
     </ion-item>
     <ion-item>
-      <span>房间标配项:</span><span><i *ngFor="let itemPre of houseDetail.standarFurnitrues">{{itemPre.name}}</i>&nbsp;</span>
+      <span>房间标配项:</span><span><code
+      *ngFor="let itemPre of houseDetail.standarFurnitrues">{{itemPre.name}}、</code></span>
     </ion-item>
     <ion-item class="checkbox">
       <span>房间选配项:</span>
       <span><label *ngFor="let item of houseDetail.optionalFurnitrues">
-        <input type="checkbox" [(ngModel)]="item.choosed" (ngModelChange)="chooseChange(item.id)">{{item.name}}({{item.rentPrice}}元)
+        <input type="checkbox" [(ngModel)]="item.choosed" (ngModelChange)="chooseChange(item.id, item.choosed)">{{item.name}}({{item.rentPrice}}元)
       </label>&nbsp;</span>
     </ion-item>
     <ion-item>
-      <ion-select [(ngModel)]="monthCount" (ionChange)="onSelectMonth()"
-                  interface="action-sheet" cancelText="取消" okText="确定">
-        <ion-option value="1">
-          1个月
-        </ion-option>
-        <ion-option value="2">
-          2个月
-        </ion-option>
-        <ion-option value="3">
-          3个月
-        </ion-option>
-        <ion-option value="6">
-          6个月
-        </ion-option>
-        <ion-option value="12">
-          12个月
-        </ion-option>
-        <ion-option value="24">
-          24个月
-        </ion-option>
-      </ion-select>
+      <ion-label>
+        <span>租赁时间:</span>
+        <span><ion-select [(ngModel)]="monthCount" (ionChange)="onSelectMonth()"
+                          interface="action-sheet" cancelText="取消" okText="确定" placeholder="请选择时长">
+          <ion-option value="1">1个月</ion-option>
+          <ion-option value="2">2个月</ion-option>
+          <ion-option value="3">3个月</ion-option>
+          <ion-option value="6">6个月</ion-option>
+          <ion-option value="12">12个月</ion-option>
+          <ion-option value="24">24个月</ion-option>
+        </ion-select>
+          </span>
+      </ion-label>
+
     </ion-item>
     <ion-item class="pay-money">
       <span>缴纳金额:</span><span>{{allMoney}}</span><span>元</span>

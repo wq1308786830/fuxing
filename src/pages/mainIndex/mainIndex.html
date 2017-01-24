@@ -13,16 +13,11 @@
 
   <ion-slides [options]="mySlideOptions">
 
-    <ion-slide style="background-color: green">
-      <h2>Slide 1</h2>
+    <ion-slide style="background: url('assets/img/slide1.jpg')">
     </ion-slide>
-
-    <ion-slide style="background-color: blue">
-      <h2>Slide 2</h2>
+    <ion-slide style="background: url('assets/img/slide2.jpg')">
     </ion-slide>
-
-    <ion-slide style="background-color: red">
-      <h2>Slide 3</h2>
+    <ion-slide style="background: url('assets/img/slide3.jpg')">
     </ion-slide>
 
   </ion-slides>
@@ -41,11 +36,12 @@
       <div class="item-content">
         <div>
           <ion-thumbnail>
-            <img [src]="item.imgurl">
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1485335794&di=2ef27c5abc1f3dcedc7b4b7519187ae8&imgtype=jpg&er=1&src=http%3A%2F%2Fimg10.3lian.com%2Fshow2014%2F4%2F69%2F10.jpg">
+            <!--<img [src]="item.imgurl">-->
           </ion-thumbnail>
           <div>
             <p><span>{{item.name}}</span><span>{{item.area}}㎡</span></p>
-            <p><span>{{item.rent}}{{item.rent_unit}}</span></p>
+            <p><span>{{item.rent}}{{item.rent_unit}}元/月</span></p>
             <p><span>{{item.gname}}</span><span>{{item.decoration}}</span></p>
           </div>
         </div>

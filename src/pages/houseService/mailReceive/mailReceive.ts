@@ -28,15 +28,15 @@ export class MailReceive implements OnInit {
     this.receiveTag = 'notReceived';
     this.notReceivedList = [];
     this.receivedList = [];
-    this.currPage1 = 0;
-    this.currPage2 = 0;
+    this.currPage1 = 1;
+    this.currPage2 = 1;
   }
 
   ngOnInit(): void {
 
     let loader = this.loadingCtrl.create({content: "正在加载..."});
     loader.present();
-    this.httpService.getMailApplyList(0, false).subscribe(data => {
+    this.httpService.getMailApplyList(1, false).subscribe(data => {
       loader.dismiss();
       if (data) {
         this.notReceivedList = data;
@@ -53,7 +53,7 @@ export class MailReceive implements OnInit {
       case 'notReceived':
         loader = this.loadingCtrl.create({content: "正在加载..."});
         loader.present();
-        this.httpService.getMailApplyList(0, false).subscribe(data => {
+        this.httpService.getMailApplyList(1, false).subscribe(data => {
           loader.dismiss();
           if (data) {
             this.notReceivedList = data;
@@ -66,7 +66,7 @@ export class MailReceive implements OnInit {
       case 'received':
         loader = this.loadingCtrl.create({content: "正在加载..."});
         loader.present();
-        this.httpService.getMailApplyList(0, true).subscribe(data => {
+        this.httpService.getMailApplyList(1, true).subscribe(data => {
           loader.dismiss();
           if (data) {
             this.receivedList = data;
@@ -88,12 +88,12 @@ export class MailReceive implements OnInit {
   doInfinite(ev) {
     if (this.receiveTag === 'notReceived') {
       this.httpService.getMailApplyList(++this.currPage1, false).subscribe(data => {
-        ev.complete();
         if (data) {
           for (let item of data) {
             this.notReceivedList.push(item);
           }
         }
+        ev.complete();
       }, err => {
         ev.complete();
       });
@@ -101,12 +101,12 @@ export class MailReceive implements OnInit {
 
     if (this.receiveTag === 'received') {
       this.httpService.getMailApplyList(++this.currPage1, true).subscribe(data => {
-        ev.complete();
         if (data) {
           for (let item of data) {
             this.receivedList.push(item);
           }
         }
+        ev.complete();
       }, err => {
         ev.complete();
       });

@@ -33,10 +33,11 @@ export class Cleaning implements OnInit {
       masterPhoneNo: this.httpService.accountInfo.mobiPhone || '',
       masterAddress: '',
       changeDate: '2016-01-01T00:00:00+01:00',
-      masterAtHome: false,
+      masterAtHome: true,
       comment: ''
     };
-    this.currPage = 0;
+    this.currPage = 1;
+    this.cleanList = [];
   }
 
   ngOnInit() {
@@ -60,7 +61,7 @@ export class Cleaning implements OnInit {
       loader.dismiss();
     }, err => {
       loader.dismiss();
-      this.util.showAlertMsg("提交失败，请重试");
+      this.util.showAlertMsg(err);
     });
   }
 
@@ -80,47 +81,52 @@ export class Cleaning implements OnInit {
       loader.dismiss();
     }, err => {
       loader.dismiss();
-      this.util.showAlertMsg("提交失败，请重试");
+      this.util.showAlertMsg(err);
     });
   }
 
   segmentChanged() {
 
-    switch (this.cleaning) {
-      case 'cleaningForm':
-        this.httpService.getRentHouseInfo(this.httpService.accountInfo.houseid.toString()).subscribe(data => {
-          this.formDetail.masterAddress = data.name;
-        }, err => {
-          this.util.showAlertMsg("获取房间地址失败");
-        });
-        break;
-      case 'cleaningList':
-        let loader = this.loadingCtrl.create({content: "正在加载..."});
-        loader.present();
-        this.httpService.getCleanApplyList(0).subscribe(data => {
-          loader.dismiss();
-          if (data) {
-            this.cleanList = data;
-          }
-        }, err => {
-          loader.dismiss();
-          this.util.showAlertMsg("获取数据失败，请重试");
-        });
-        break;
-      default:
-        break;
+    if (this.httpService.accountInfo.houseid) {
+
+      switch (this.cleaning) {
+
+        case 'cleaningForm':
+          this.httpService.getRentHouseInfo(this.httpService.accountInfo.houseid+'').subscribe(data => {
+            this.formDetail.masterAddress = data.name;
+          }, err => {
+            this.util.showAlertMsg(err);
+          });
+          break;
+
+        case 'cleaningList':
+          let loader = this.loadingCtrl.create({content: "正在加载..."});
+          loader.present();
+          this.httpService.getCleanApplyList(1).subscribe(data => {
+            loader.dismiss();
+            if (data) {
+              this.cleanList = data;
+            }
+          }, err => {
+            loader.dismiss();
+            this.util.showAlertMsg(err);
+          });
+          break;
+        default:
+          break;
+      }
     }
   }
 
   doInfinite(ev) {
     if (this.cleaning === 'cleaningList') {
       this.httpService.getCleanApplyList(++this.currPage).subscribe(data => {
-        ev.complete();
         if (data) {
           for (let item of data) {
             this.cleanList.push(item);
           }
         }
+        ev.complete();
       }, err => {
         ev.complete();
       });
